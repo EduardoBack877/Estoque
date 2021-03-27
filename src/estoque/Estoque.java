@@ -4,6 +4,8 @@
  * and open the template in the editor.
  */
 package estoque;
+import tela.Login;
+import tela.MainWindow;
 
 /**
  *
@@ -16,6 +18,8 @@ public class Estoque {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        new Login(null, true).setVisible(true);
+        
     }
     
 }
