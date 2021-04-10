@@ -36,7 +36,7 @@ public class IfrCadastroSecoes extends javax.swing.JInternalFrame {
         tfdPesquisarSecoes = new javax.swing.JTextField();
         btnPesquisarSecoes = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        TSecao = new javax.swing.JTable();
         btnEditarSecoes = new javax.swing.JButton();
         btnExcluirSecoes = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
@@ -55,8 +55,13 @@ public class IfrCadastroSecoes extends javax.swing.JInternalFrame {
         });
 
         btnPesquisarSecoes.setText("Pesquisar");
+        btnPesquisarSecoes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPesquisarSecoesActionPerformed(evt);
+            }
+        });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        TSecao.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
                 {null, null},
@@ -67,7 +72,7 @@ public class IfrCadastroSecoes extends javax.swing.JInternalFrame {
                 "Id", "Descrição"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(TSecao);
 
         btnEditarSecoes.setText("Editar");
 
@@ -177,6 +182,10 @@ public class IfrCadastroSecoes extends javax.swing.JInternalFrame {
 
     private void btnSalvarSecaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarSecaoActionPerformed
         Secao s = new Secao();
+        String a = tfdDescricaoSecao.getText();
+        if (a.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "O preenchimento do campo de descrição é obrigatório");
+        } else {
         s.setDescricao(tfdDescricaoSecao.getText());
         if (new SecaoDAO().salvar(s)) {
             JOptionPane.showMessageDialog(this, "Registro salvo com sucesso!");
@@ -186,11 +195,17 @@ public class IfrCadastroSecoes extends javax.swing.JInternalFrame {
         } else {
             JOptionPane.showMessageDialog(this, "Erro ao salvar registro!");                                          
         }
+        }
 
     }//GEN-LAST:event_btnSalvarSecaoActionPerformed
 
+    private void btnPesquisarSecoesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarSecoesActionPerformed
+       new SecaoDAO().popularTabela(TSecao,tfdPesquisarSecoes.getText());
+    }//GEN-LAST:event_btnPesquisarSecoesActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTable TSecao;
     private javax.swing.JButton btnEditarSecoes;
     private javax.swing.JButton btnExcluirSecoes;
     private javax.swing.JButton btnFecharSecao;
@@ -202,7 +217,6 @@ public class IfrCadastroSecoes extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabelPesquisarSecoes;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTextField tfdDescricaoSecao;
     private javax.swing.JTextField tfdPesquisarSecoes;
     // End of variables declaration//GEN-END:variables
