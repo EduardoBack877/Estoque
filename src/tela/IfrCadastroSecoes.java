@@ -5,6 +5,10 @@
  */
 package tela;
 
+import dao.SecaoDAO;
+import entidade.Secao;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author dudub
@@ -78,6 +82,11 @@ public class IfrCadastroSecoes extends javax.swing.JInternalFrame {
         jLabel2.setText("*");
 
         btnSalvarSecao.setText("Salvar");
+        btnSalvarSecao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalvarSecaoActionPerformed(evt);
+            }
+        });
 
         btnFecharSecao.setText("Fechar");
 
@@ -165,6 +174,20 @@ public class IfrCadastroSecoes extends javax.swing.JInternalFrame {
     private void tfdPesquisarSecoesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfdPesquisarSecoesActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_tfdPesquisarSecoesActionPerformed
+
+    private void btnSalvarSecaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarSecaoActionPerformed
+        Secao s = new Secao();
+        s.setDescricao(tfdDescricaoSecao.getText());
+        if (new SecaoDAO().salvar(s)) {
+            JOptionPane.showMessageDialog(this, "Registro salvo com sucesso!");
+            
+            tfdDescricaoSecao.setText("");
+            tfdDescricaoSecao.requestFocus();
+        } else {
+            JOptionPane.showMessageDialog(this, "Erro ao salvar registro!");                                          
+        }
+
+    }//GEN-LAST:event_btnSalvarSecaoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

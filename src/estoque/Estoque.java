@@ -4,6 +4,8 @@
  * and open the template in the editor.
  */
 package estoque;
+import apoio.ConexaoBD;
+import java.sql.Statement;
 import tela.Login;
 import tela.MainWindow;
 
@@ -17,7 +19,6 @@ public class Estoque {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
         new Login(null, true).setVisible(true);
         
     }
