@@ -21,10 +21,10 @@ public class ConexaoBD {
         try {
             // Carrega informações do arquivo de propriedades
             Properties prop = new Properties();
-            prop.load(new FileInputStream("db.properties"));
-            String dbdriver = prop.getProperty("db.driver");
-            String dburl = prop.getProperty("db.url");
-            String dbuser = prop.getProperty("db.user");
+            //prop.load(new FileInputStream("C:\\Users\\Eduardo Back\\Documents\\NetBeansProjects\\RecDesp\\db.properties"));
+            String dbdriver = "org.postgresql.Driver";//prop.getProperty("db.driver");
+            String dburl = "jdbc:postgresql://localhost:5432/Estoque";//prop.getProperty("db.url");
+            String dbuser = "postgres";//prop.getProperty("db.user");
             String dbsenha = "postgres";
 
             // Carrega Driver do Banco de Dados
@@ -70,4 +70,3 @@ public class ConexaoBD {
         }
     }
 }
-

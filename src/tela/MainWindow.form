@@ -14,22 +14,17 @@
                 <Property name="text" type="java.lang.String" value="Cadastro de Pessoas"/>
               </Properties>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuCadastroSetores">
+            <MenuItem class="javax.swing.JMenuItem" name="jMenuCadastroSecoes">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Cadastro de Setores"/>
+                <Property name="text" type="java.lang.String" value="Cadastro de Se&#xe7;&#xf5;es"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuCadastroSetoresActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuCadastroSecoesActionPerformed"/>
               </Events>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuCadastroDepartamentos">
+            <MenuItem class="javax.swing.JMenuItem" name="jMenuCadastroGrupoProdutos">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Cadastro de Departamentos"/>
-              </Properties>
-            </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuCadastroCategorias">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Cadastro de Categorias"/>
+                <Property name="text" type="java.lang.String" value="Cadastro de Grupo de Produtos"/>
               </Properties>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuCadastroProdutos">

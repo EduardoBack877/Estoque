@@ -39,9 +39,8 @@ public class MainWindow extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenuCadastros = new javax.swing.JMenu();
         jMenuCadastroPessoa = new javax.swing.JMenuItem();
-        jMenuCadastroSetores = new javax.swing.JMenuItem();
-        jMenuCadastroDepartamentos = new javax.swing.JMenuItem();
-        jMenuCadastroCategorias = new javax.swing.JMenuItem();
+        jMenuCadastroSecoes = new javax.swing.JMenuItem();
+        jMenuCadastroGrupoProdutos = new javax.swing.JMenuItem();
         jMenuCadastroProdutos = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
 
@@ -64,19 +63,16 @@ public class MainWindow extends javax.swing.JFrame {
         jMenuCadastroPessoa.setText("Cadastro de Pessoas");
         jMenuCadastros.add(jMenuCadastroPessoa);
 
-        jMenuCadastroSetores.setText("Cadastro de Setores");
-        jMenuCadastroSetores.addActionListener(new java.awt.event.ActionListener() {
+        jMenuCadastroSecoes.setText("Cadastro de Seções");
+        jMenuCadastroSecoes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuCadastroSetoresActionPerformed(evt);
+                jMenuCadastroSecoesActionPerformed(evt);
             }
         });
-        jMenuCadastros.add(jMenuCadastroSetores);
+        jMenuCadastros.add(jMenuCadastroSecoes);
 
-        jMenuCadastroDepartamentos.setText("Cadastro de Departamentos");
-        jMenuCadastros.add(jMenuCadastroDepartamentos);
-
-        jMenuCadastroCategorias.setText("Cadastro de Categorias");
-        jMenuCadastros.add(jMenuCadastroCategorias);
+        jMenuCadastroGrupoProdutos.setText("Cadastro de Grupo de Produtos");
+        jMenuCadastros.add(jMenuCadastroGrupoProdutos);
 
         jMenuCadastroProdutos.setText("Cadastro de Produtos");
         jMenuCadastros.add(jMenuCadastroProdutos);
@@ -102,9 +98,11 @@ public class MainWindow extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenuCadastroSetoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuCadastroSetoresActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuCadastroSetoresActionPerformed
+    private void jMenuCadastroSecoesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuCadastroSecoesActionPerformed
+        IfrCadastroSecoes s = new IfrCadastroSecoes();
+        jDesktopPane1.add(s);
+        s.setVisible(true);       
+    }//GEN-LAST:event_jMenuCadastroSecoesActionPerformed
 
     /**
      * @param args the command line arguments
@@ -146,11 +144,10 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuCadastroCategorias;
-    private javax.swing.JMenuItem jMenuCadastroDepartamentos;
+    private javax.swing.JMenuItem jMenuCadastroGrupoProdutos;
     private javax.swing.JMenuItem jMenuCadastroPessoa;
     private javax.swing.JMenuItem jMenuCadastroProdutos;
-    private javax.swing.JMenuItem jMenuCadastroSetores;
+    private javax.swing.JMenuItem jMenuCadastroSecoes;
     private javax.swing.JMenu jMenuCadastros;
     // End of variables declaration//GEN-END:variables
 }
