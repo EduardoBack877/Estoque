@@ -20,11 +20,20 @@ public class SecaoDAO implements IDAOT<Secao>  {
     public boolean salvar(Secao s) {
         try {
             Statement st = ConexaoBD.getInstance().getConnection().createStatement();
-            String sql = ""
-                    + "INSERT INTO secao VALUES ( "
+            String sql = "";
+            
+             if (s.getId() == 0) {
+                  sql = "INSERT INTO secao VALUES ( "
                     + "default, "
                     + "'" + s.getDescricao() + "'"
                     + ")";
+                  
+             } else {
+                 sql = "UPDATE secao "
+                        + "SET descricao = '" + s.getDescricao() + "'"
+                        + "WHERE id = " + s.getId();
+            }
+             
 
             System.out.println("SQL: " + sql);
 
@@ -60,7 +69,7 @@ public class SecaoDAO implements IDAOT<Secao>  {
                     + "SELECT * "
                     + "FROM secao " 
                     + "WHERE descricao ILIKE '%" + criterio + "%'"
-                    );
+                    + "ORDER BY id");
             
 
             // vai para o ultima linha do RS
@@ -186,7 +195,31 @@ public class SecaoDAO implements IDAOT<Secao>  {
 
     @Override
     public Secao consultarId(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Secao secao = null;
+
+        try {
+            Statement st = ConexaoBD.getInstance().getConnection().createStatement();
+
+            String sql = "SELECT * "
+                    + "FROM secao "
+                    + "WHERE id = " + id;
+            System.out.println("CONSULTA SECAO");
+            System.out.println("SQL: " + sql);
+
+            resultadoQ = st.executeQuery(sql);
+
+            if (resultadoQ.next()) {
+                secao = new Secao();
+
+                secao.setId(resultadoQ.getInt("id"));
+                secao.setDescricao(resultadoQ.getString("descricao"));
+            }
+
+        } catch (Exception e) {
+            System.out.println("Erro ao consultar seção: " + e);
+        }
+
+        return secao;
     }
 
 
