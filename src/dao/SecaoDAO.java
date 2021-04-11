@@ -156,7 +156,22 @@ public class SecaoDAO implements IDAOT<Secao>  {
 
     @Override
     public boolean excluir(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            Statement st = ConexaoBD.getInstance().getConnection().createStatement();
+
+            String sql = "DELETE FROM secao "
+                    + "WHERE id = " + id;
+
+            System.out.println("SQL: " + sql);
+
+            st.executeUpdate(sql);
+
+            return true;
+
+        } catch (Exception e) {
+            System.out.println("Erro ao excluir agendamento: " + e);
+            return false;
+        }
     }
 
     @Override

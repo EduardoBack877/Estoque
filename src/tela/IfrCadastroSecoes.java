@@ -77,6 +77,11 @@ public class IfrCadastroSecoes extends javax.swing.JInternalFrame {
         btnEditarSecoes.setText("Editar");
 
         btnExcluirSecoes.setText("Excluir");
+        btnExcluirSecoes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcluirSecoesActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setText("Cadastro de Seção");
@@ -202,6 +207,26 @@ public class IfrCadastroSecoes extends javax.swing.JInternalFrame {
     private void btnPesquisarSecoesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarSecoesActionPerformed
        new SecaoDAO().popularTabela(TSecao,tfdPesquisarSecoes.getText());
     }//GEN-LAST:event_btnPesquisarSecoesActionPerformed
+
+    private void btnExcluirSecoesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirSecoesActionPerformed
+        if (JOptionPane.showConfirmDialog(this, "Deseja realmente excluir?") == JOptionPane.OK_OPTION) {
+
+            String idString = String.valueOf(TSecao.getValueAt(TSecao.getSelectedRow(), 0));
+
+            int idExclusao = Integer.parseInt(idString);
+
+            SecaoDAO sDAO = new SecaoDAO();
+
+            if (sDAO.excluir(idExclusao)) {
+                JOptionPane.showMessageDialog(null, "Agendamento excluído com sucesso!");
+                sDAO.popularTabela(TSecao, tfdPesquisarSecoes.getText());
+                
+
+            } else {
+                JOptionPane.showMessageDialog(null, "Problemas ao excluir agendamento.");
+            }
+        }
+    }//GEN-LAST:event_btnExcluirSecoesActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
