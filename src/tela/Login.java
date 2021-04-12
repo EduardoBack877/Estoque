@@ -5,6 +5,9 @@
  */
 package tela;
 
+import dao.UsuarioDAO;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author dudub
@@ -110,8 +113,15 @@ public class Login extends javax.swing.JDialog {
     }//GEN-LAST:event_tfdUsernameActionPerformed
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
-        new MainWindow().setVisible(true);
+
+        if (new UsuarioDAO().autenticar(tfdUsername.getText(), String.valueOf(jPassword.getPassword()))) {
+            new MainWindow().setVisible(true);
             this.dispose();
+        } else {
+            JOptionPane.showMessageDialog(this, "Usuário ou senha incorretos!");
+            btnLogin.requestFocus();
+       
+        }
     }//GEN-LAST:event_btnLoginActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
