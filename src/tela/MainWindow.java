@@ -60,7 +60,12 @@ public class MainWindow extends javax.swing.JFrame {
 
         jMenuCadastros.setText("Cadastros");
 
-        jMenuCadastroPessoa.setText("Cadastro de Pessoas");
+        jMenuCadastroPessoa.setText("Cadastro de Usuários");
+        jMenuCadastroPessoa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuCadastroPessoaActionPerformed(evt);
+            }
+        });
         jMenuCadastros.add(jMenuCadastroPessoa);
 
         jMenuCadastroSecoes.setText("Cadastro de Seções");
@@ -103,6 +108,12 @@ public class MainWindow extends javax.swing.JFrame {
         jDesktopPane1.add(s);
         s.setVisible(true);       
     }//GEN-LAST:event_jMenuCadastroSecoesActionPerformed
+
+    private void jMenuCadastroPessoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuCadastroPessoaActionPerformed
+        IfrCadastroUsuario u = new IfrCadastroUsuario();
+        jDesktopPane1.add(u);
+        u.setVisible(true);
+    }//GEN-LAST:event_jMenuCadastroPessoaActionPerformed
 
     /**
      * @param args the command line arguments

@@ -5,6 +5,7 @@
  */
 package tela;
 
+import dao.Md5;
 import dao.UsuarioDAO;
 import javax.swing.JOptionPane;
 
@@ -113,8 +114,8 @@ public class Login extends javax.swing.JDialog {
     }//GEN-LAST:event_tfdUsernameActionPerformed
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
-
-        if (new UsuarioDAO().autenticar(tfdUsername.getText(), String.valueOf(jPassword.getPassword()))) {
+      String senha = Md5.getMd5(jPassword.getText());
+        if (new UsuarioDAO().autenticar(tfdUsername.getText(), String.valueOf(senha))) {
             new MainWindow().setVisible(true);
             this.dispose();
         } else {
