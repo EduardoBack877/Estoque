@@ -6,7 +6,16 @@ public class Usuario {
     int id;
     String username;
     String password;
-    char status;
+    int status;
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
 
     public int getId() {
         return id;
@@ -32,13 +41,7 @@ public class Usuario {
         this.password = password;
     }
 
-    public char getStatus() {
-        return status;
-    }
 
-    public void setStatus(char status) {
-        this.status = status;
-    }
     
     
 }
