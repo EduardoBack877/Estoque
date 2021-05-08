@@ -26,6 +26,7 @@ import tela.IfrCadastroUsuario;
 public class UsuarioDAO implements IDAOT<Usuario> {
     ResultSet resultadoQ = null;
     ResultSet resultadoQ1 = null;
+    ResultSet resultadoQ2 = null;
     public boolean autenticar(String login, String senha) {
 
         try {
@@ -49,6 +50,68 @@ public class UsuarioDAO implements IDAOT<Usuario> {
             return false;
         }
     }
+    
+    
+    
+    
+    
+    
+    
+     public String retornasenha(int id) {
+         String senhaaux = null;
+        try {
+            Statement st = ConexaoBD.getInstance().getConnection().createStatement();
+
+            String sql = ""
+                    + "SELECT senha "
+                    + "FROM usuario "
+                    + "WHERE "
+                    + "id = " + id;
+
+       //     System.out.println("SQL: " + sql);
+
+            resultadoQ2 = st.executeQuery(sql);
+
+            if (resultadoQ2.next()) {
+                senhaaux = resultadoQ2.getString("senha");
+            };
+            return senhaaux;
+            
+        } catch (Exception e) {
+            System.out.println("Erro ao retornar senha: " + e);
+            return "";
+        }
+    }
+    
+    public boolean salvarsemmd5 (Usuario u) {
+           try {
+            Statement st = ConexaoBD.getInstance().getConnection().createStatement();
+            String sql = "";
+            
+           
+                 sql = "UPDATE usuario "
+                        + "SET login = '" + u.getUsername() + "',"
+                        + "senha = ('" + u.getPassword()  + "'),"
+                        + "status =" + u.getStatus() + " "
+                        + "WHERE id = " + u.getId();
+           
+            System.out.println("SQL: " + sql);
+
+            int resultado1 = st.executeUpdate(sql);
+
+            return resultado1 > 0;
+
+        } catch (Exception e) {
+            System.out.println("Erro ao salvar seção: " + e);
+            return false;
+        }
+     
+    }
+     
+     
+     
+     
+     
 
     @Override
     public boolean salvar(Usuario u) {

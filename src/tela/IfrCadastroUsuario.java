@@ -274,8 +274,9 @@ public class IfrCadastroUsuario extends javax.swing.JInternalFrame {
         String a = tfdLoginCadUsuarios.getText();
         String b = jPasswordCadUsuarios.getText();
         String c = tfdStatusCadUsuarios.getText();
+        String senhaaux = "";
         int d = Integer.parseInt(tfdStatusCadUsuarios.getText());
-        
+        int igual = 5; // indicador que confere se a senha ao editar é igual a antiga
         // criar instancia AgendamentoDAO
         UsuarioDAO uDAO = new UsuarioDAO();
         
@@ -327,18 +328,43 @@ public class IfrCadastroUsuario extends javax.swing.JInternalFrame {
         if (auxiliar == 'S') {
            u.setId(idaux1);
            u.setUsername(tfdLoginCadUsuarios.getText());
+           if (idaux1 != 0 ) {
+               senhaaux = jPasswordCadUsuarios.getText();
+               if (uDAO.retornasenha(idaux1).equals(senhaaux)) {
+                   igual = 0;
+               } else {
+                   igual = 1;
+               };
+           }
+            System.out.println("linha");
+            System.out.println(uDAO.retornasenha(idaux1));
+            System.out.println(senhaaux);
+            System.out.println("igual = " + igual);
+            System.out.println("fimlinha");
+           
+           
            u.setPassword(jPasswordCadUsuarios.getText());
            u.setStatus(Integer.parseInt(tfdStatusCadUsuarios.getText()));
           
            // cadastrar com senha
            
-           if (uDAO.salvar(u)) {
+         if (igual == 0) {
+           if (uDAO.salvarsemmd5(u)) {
                 if (idaux1 == 0) {
                     JOptionPane.showMessageDialog(this, "Registro salvo com sucesso!");
                 } else {
                     JOptionPane.showMessageDialog(this, "Registro editado com sucesso!"); 
                 }
            }
+         } else {
+             if (uDAO.salvar(u)) {
+                if (idaux1 == 0) {
+                    JOptionPane.showMessageDialog(this, "Registro salvo com sucesso!");
+                } else {
+                    JOptionPane.showMessageDialog(this, "Registro editado com sucesso!"); 
+                }
+           }
+         }
                 
            uDAO.popularTabela(jTableCadUser, tfdPesquisarCadUsuarios.getText());      
            //limpa os campos
@@ -382,9 +408,7 @@ public class IfrCadastroUsuario extends javax.swing.JInternalFrame {
 
         // criar instancia Secao
         Usuario usuario = uDAO.consultarId(idS);
-        System.out.println("testando fora");
         if (usuario != null) {
-            System.out.println("testando dentro");
             // define os valores do obj nos campos da tela
             tfdIdCadUsuarios.setText(""+usuario.getId());
             tfdLoginCadUsuarios.setText(usuario.getUsername());
