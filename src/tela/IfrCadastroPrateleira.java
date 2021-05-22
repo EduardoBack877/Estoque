@@ -5,7 +5,9 @@
  */
 package tela;
 
+import dao.PrateleiraDAO;
 import dao.SecaoDAO;
+import entidade.Prateleira;
 import entidade.Secao;
 import javax.swing.JOptionPane;
 
@@ -13,13 +15,13 @@ import javax.swing.JOptionPane;
  *
  * @author dudub
  */
-public class IfrCadastroSecoes extends javax.swing.JInternalFrame {
+public class IfrCadastroPrateleira extends javax.swing.JInternalFrame {
         
         
-    public IfrCadastroSecoes() {
+    public IfrCadastroPrateleira() {
         initComponents();
         setarTfdIdEditable();
-        tfdIdSecao.setText("0");
+        tfdIdPrateleira.setText("0");
     }
             
 
@@ -31,57 +33,46 @@ public class IfrCadastroSecoes extends javax.swing.JInternalFrame {
 
         jSeparator1 = new javax.swing.JSeparator();
         jLabelPesquisarSecoes = new javax.swing.JLabel();
-        tfdPesquisarSecoes = new javax.swing.JTextField();
-        btnPesquisarSecoes = new javax.swing.JButton();
+        tfdPesquisarPrateleira = new javax.swing.JTextField();
+        btnPesquisarPrateleira = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        TSecao = new javax.swing.JTable();
-        btnEditarSecoes = new javax.swing.JButton();
+        TPrateleira = new javax.swing.JTable();
         btnExcluirSecoes = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jLabelDescricaoSecao = new javax.swing.JLabel();
-        tfdDescricaoSecao = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
-        btnSalvarSecao = new javax.swing.JButton();
+        btnSalvarPrateleira = new javax.swing.JButton();
         btnFecharSecao = new javax.swing.JButton();
         jLabelConsultaSecao = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        tfdIdSecao = new javax.swing.JTextField();
+        tfdIdPrateleira = new javax.swing.JTextField();
         btnLimparCampos = new javax.swing.JButton();
 
         jLabelPesquisarSecoes.setText("Pesquisar:");
 
-        tfdPesquisarSecoes.addActionListener(new java.awt.event.ActionListener() {
+        tfdPesquisarPrateleira.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfdPesquisarSecoesActionPerformed(evt);
+                tfdPesquisarPrateleiraActionPerformed(evt);
             }
         });
 
-        btnPesquisarSecoes.setText("Pesquisar");
-        btnPesquisarSecoes.addActionListener(new java.awt.event.ActionListener() {
+        btnPesquisarPrateleira.setText("Pesquisar");
+        btnPesquisarPrateleira.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPesquisarSecoesActionPerformed(evt);
+                btnPesquisarPrateleiraActionPerformed(evt);
             }
         });
 
-        TSecao.setModel(new javax.swing.table.DefaultTableModel(
+        TPrateleira.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+                {null},
+                {null},
+                {null},
+                {null}
             },
             new String [] {
-                "Id", "Descrição"
+                "Id"
             }
         ));
-        jScrollPane1.setViewportView(TSecao);
-
-        btnEditarSecoes.setText("Editar");
-        btnEditarSecoes.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEditarSecoesActionPerformed(evt);
-            }
-        });
+        jScrollPane1.setViewportView(TPrateleira);
 
         btnExcluirSecoes.setText("Excluir");
         btnExcluirSecoes.addActionListener(new java.awt.event.ActionListener() {
@@ -91,17 +82,12 @@ public class IfrCadastroSecoes extends javax.swing.JInternalFrame {
         });
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel1.setText("Cadastro de Seção");
+        jLabel1.setText("Cadastro de Prateleira");
 
-        jLabelDescricaoSecao.setText("Descrição");
-
-        jLabel2.setForeground(new java.awt.Color(255, 0, 0));
-        jLabel2.setText("*");
-
-        btnSalvarSecao.setText("Salvar");
-        btnSalvarSecao.addActionListener(new java.awt.event.ActionListener() {
+        btnSalvarPrateleira.setText("Salvar");
+        btnSalvarPrateleira.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSalvarSecaoActionPerformed(evt);
+                btnSalvarPrateleiraActionPerformed(evt);
             }
         });
 
@@ -113,13 +99,13 @@ public class IfrCadastroSecoes extends javax.swing.JInternalFrame {
         });
 
         jLabelConsultaSecao.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabelConsultaSecao.setText("Consulta de Seção");
+        jLabelConsultaSecao.setText("Consulta de Prateleira");
 
         jLabel3.setText("Id");
 
-        tfdIdSecao.addActionListener(new java.awt.event.ActionListener() {
+        tfdIdPrateleira.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfdIdSecaoActionPerformed(evt);
+                tfdIdPrateleiraActionPerformed(evt);
             }
         });
 
@@ -148,8 +134,6 @@ public class IfrCadastroSecoes extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnEditarSecoes)
-                        .addGap(34, 34, 34)
                         .addComponent(btnExcluirSecoes))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
@@ -157,7 +141,7 @@ public class IfrCadastroSecoes extends javax.swing.JInternalFrame {
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnFecharSecao)
-                            .addComponent(btnSalvarSecao)))
+                            .addComponent(btnSalvarPrateleira)))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addGap(74, 74, 74)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -165,28 +149,19 @@ public class IfrCadastroSecoes extends javax.swing.JInternalFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabelPesquisarSecoes)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(tfdPesquisarSecoes)
+                                .addComponent(tfdPesquisarPrateleira)
                                 .addGap(18, 18, 18)
-                                .addComponent(btnPesquisarSecoes))
+                                .addComponent(btnPesquisarPrateleira))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
                                 .addComponent(jLabelConsultaSecao)
                                 .addGap(167, 167, 167))))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGap(60, 60, 60)
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabelDescricaoSecao)
-                            .addComponent(jLabel3))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(tfdDescricaoSecao)
-                                .addGap(2, 2, 2))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(tfdIdSecao, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE)))))
+                        .addGap(72, 72, 72)
+                        .addComponent(jLabel3)
+                        .addGap(54, 54, 54)
+                        .addComponent(tfdIdPrateleira, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addGap(49, 49, 49))
         );
         layout.setVerticalGroup(
@@ -198,31 +173,24 @@ public class IfrCadastroSecoes extends javax.swing.JInternalFrame {
                     .addComponent(jLabelConsultaSecao))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tfdPesquisarSecoes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tfdPesquisarPrateleira, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabelPesquisarSecoes)
-                    .addComponent(btnPesquisarSecoes))
+                    .addComponent(btnPesquisarPrateleira))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnEditarSecoes)
-                    .addComponent(btnExcluirSecoes))
+                .addComponent(btnExcluirSecoes)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel1)
                 .addGap(12, 12, 12)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel3)
-                    .addComponent(tfdIdSecao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(tfdIdPrateleira, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(31, 31, 31)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabelDescricaoSecao)
-                    .addComponent(tfdDescricaoSecao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
-                .addGap(8, 8, 8)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnSalvarSecao)
+                    .addComponent(btnSalvarPrateleira)
                     .addComponent(btnLimparCampos))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
                 .addComponent(btnFecharSecao)
                 .addContainerGap())
         );
@@ -231,105 +199,70 @@ public class IfrCadastroSecoes extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     public void setarTfdIdEditable () {
-        tfdIdSecao.setEditable(false);
+        tfdIdPrateleira.setEditable(false);
     }
 
-    private void tfdPesquisarSecoesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfdPesquisarSecoesActionPerformed
+    private void tfdPesquisarPrateleiraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfdPesquisarPrateleiraActionPerformed
         // TODO add your handling code here:
         
-    }//GEN-LAST:event_tfdPesquisarSecoesActionPerformed
+    }//GEN-LAST:event_tfdPesquisarPrateleiraActionPerformed
 
-    private void btnSalvarSecaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarSecaoActionPerformed
-        Secao s = new Secao();
-        SecaoDAO sDAO = new SecaoDAO();
-        String a = tfdDescricaoSecao.getText();
-        String b = tfdIdSecao.getText();
+    private void btnSalvarPrateleiraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarPrateleiraActionPerformed
+        Prateleira s = new Prateleira();
+        PrateleiraDAO sDAO = new PrateleiraDAO();
+        String b = tfdIdPrateleira.getText();
         int baux = Integer.parseInt(b);
-        tfdIdSecao.setEditable(false);
-        if (a.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "O preenchimento do campo de descrição é obrigatório");
-        } else {
+        tfdIdPrateleira.setEditable(false);
             s.setId(baux);
-            s.setDescricao(tfdDescricaoSecao.getText());
-            if (new SecaoDAO().salvar(s))  {
+            if (new PrateleiraDAO().salvar(s))  {
                 if (baux == 0) {
                     JOptionPane.showMessageDialog(this, "Registro salvo com sucesso!");
-                } else {
-                    JOptionPane.showMessageDialog(this, "Registro editado com sucesso!"); 
                 }
             
-            tfdIdSecao.setText("0");
-            tfdDescricaoSecao.setText("");
-            tfdDescricaoSecao.requestFocus();
-            sDAO.popularTabela(TSecao, tfdPesquisarSecoes.getText());
+            tfdIdPrateleira.setText("0");
+            tfdIdPrateleira.requestFocus();
+            sDAO.popularTabela(TPrateleira, tfdPesquisarPrateleira.getText());
         } else {
             JOptionPane.showMessageDialog(this, "Erro ao salvar registro!");                                          
         }
-        }
+        
 
-    }//GEN-LAST:event_btnSalvarSecaoActionPerformed
+    }//GEN-LAST:event_btnSalvarPrateleiraActionPerformed
 
-    private void btnPesquisarSecoesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarSecoesActionPerformed
-       new SecaoDAO().popularTabela(TSecao,tfdPesquisarSecoes.getText());
-    }//GEN-LAST:event_btnPesquisarSecoesActionPerformed
+    private void btnPesquisarPrateleiraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarPrateleiraActionPerformed
+       new PrateleiraDAO().popularTabela(TPrateleira,tfdPesquisarPrateleira.getText());
+    }//GEN-LAST:event_btnPesquisarPrateleiraActionPerformed
 
     private void btnExcluirSecoesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirSecoesActionPerformed
-            tfdIdSecao.setEditable(false);
+            tfdIdPrateleira.setEditable(false);
          // falta validação checar google docs
             if (JOptionPane.showConfirmDialog(this, "Deseja realmente excluir?") == JOptionPane.OK_OPTION) {
             
             
-            String idString = String.valueOf(TSecao.getValueAt(TSecao.getSelectedRow(), 0));
+            String idString = String.valueOf(TPrateleira.getValueAt(TPrateleira.getSelectedRow(), 0));
                 System.out.println(idString);
             int idExclusao = Integer.parseInt(idString);
 
-            SecaoDAO sDAO = new SecaoDAO();
+            PrateleiraDAO sDAO = new PrateleiraDAO();
             
             if (sDAO.excluir(idExclusao)) {
-                    JOptionPane.showMessageDialog(null, "Seção excluída com sucesso!");
-                sDAO.popularTabela(TSecao, tfdPesquisarSecoes.getText());
+                JOptionPane.showMessageDialog(null, "Prateleira excluída com sucesso!");
+                sDAO.popularTabela(TPrateleira, tfdPesquisarPrateleira.getText());
             
             
             } else {
-                JOptionPane.showMessageDialog(null, "Problemas ao excluir Seção.");
+                JOptionPane.showMessageDialog(null, "Problemas ao excluir agendamento.");
             }
         }
             
     }//GEN-LAST:event_btnExcluirSecoesActionPerformed
 
-    private void btnEditarSecoesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarSecoesActionPerformed
-        String idString = String.valueOf(TSecao.getValueAt(TSecao.getSelectedRow(), 0));
-     
-        int idS = Integer.parseInt(idString);
-        tfdIdSecao.setEditable(false);
-        // criar instancia SecaoDAO
-        SecaoDAO secaoDAO = new SecaoDAO();
-
-        // criar instancia Secao
-        Secao secao = secaoDAO.consultarId(idS);
-
-        if (secao != null) {
-
-            // define os valores do obj nos campos da tela
-            tfdIdSecao.setText(""+secao.getId());
-            tfdDescricaoSecao.setText(secao.getDescricao());
-            //popula tabela
-            secaoDAO.popularTabela(TSecao, tfdPesquisarSecoes.getText());
-
-            // mudar de aba
-            //jTabbedPane1.setSelectedIndex(0);
-            // definir o foco
-            tfdDescricaoSecao.requestFocus();
-        }
-    }//GEN-LAST:event_btnEditarSecoesActionPerformed
-
-    private void tfdIdSecaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfdIdSecaoActionPerformed
+    private void tfdIdPrateleiraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfdIdPrateleiraActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_tfdIdSecaoActionPerformed
+    }//GEN-LAST:event_tfdIdPrateleiraActionPerformed
 
     private void btnLimparCamposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparCamposActionPerformed
-            tfdIdSecao.setText("0");
-            tfdDescricaoSecao.setText("");
+            tfdIdPrateleira.setText("0");
     }//GEN-LAST:event_btnLimparCamposActionPerformed
 
     private void btnFecharSecaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFecharSecaoActionPerformed
@@ -338,23 +271,19 @@ public class IfrCadastroSecoes extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTable TSecao;
-    private javax.swing.JButton btnEditarSecoes;
+    private javax.swing.JTable TPrateleira;
     private javax.swing.JButton btnExcluirSecoes;
     private javax.swing.JButton btnFecharSecao;
     private javax.swing.JButton btnLimparCampos;
-    private javax.swing.JButton btnPesquisarSecoes;
-    private javax.swing.JButton btnSalvarSecao;
+    private javax.swing.JButton btnPesquisarPrateleira;
+    private javax.swing.JButton btnSalvarPrateleira;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabelConsultaSecao;
-    private javax.swing.JLabel jLabelDescricaoSecao;
     private javax.swing.JLabel jLabelPesquisarSecoes;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTextField tfdDescricaoSecao;
-    private javax.swing.JTextField tfdIdSecao;
-    private javax.swing.JTextField tfdPesquisarSecoes;
+    private javax.swing.JTextField tfdIdPrateleira;
+    private javax.swing.JTextField tfdPesquisarPrateleira;
     // End of variables declaration//GEN-END:variables
 }

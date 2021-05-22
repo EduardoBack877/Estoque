@@ -41,7 +41,7 @@ public class MainWindow extends javax.swing.JFrame {
         jMenuCadastroPessoa = new javax.swing.JMenuItem();
         jMenuCadastroSecoes = new javax.swing.JMenuItem();
         jMenuCadastroGrupoProdutos = new javax.swing.JMenuItem();
-        jMenuCadastroProdutos = new javax.swing.JMenuItem();
+        jMenuCadastroDePrateleiras = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -84,8 +84,13 @@ public class MainWindow extends javax.swing.JFrame {
         });
         jMenuCadastros.add(jMenuCadastroGrupoProdutos);
 
-        jMenuCadastroProdutos.setText("Cadastro de Produtos");
-        jMenuCadastros.add(jMenuCadastroProdutos);
+        jMenuCadastroDePrateleiras.setText("Cadastro de Prateleiras");
+        jMenuCadastroDePrateleiras.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuCadastroDePrateleirasActionPerformed(evt);
+            }
+        });
+        jMenuCadastros.add(jMenuCadastroDePrateleiras);
 
         jMenuBar1.add(jMenuCadastros);
 
@@ -125,6 +130,12 @@ public class MainWindow extends javax.swing.JFrame {
         jDesktopPane1.add(g);
         g.setVisible(true);
     }//GEN-LAST:event_jMenuCadastroGrupoProdutosActionPerformed
+
+    private void jMenuCadastroDePrateleirasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuCadastroDePrateleirasActionPerformed
+        IfrCadastroPrateleira p = new IfrCadastroPrateleira();
+        jDesktopPane1.add(p);
+        p.setVisible(true);        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuCadastroDePrateleirasActionPerformed
 
     /**
      * @param args the command line arguments
@@ -166,9 +177,9 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuCadastroDePrateleiras;
     private javax.swing.JMenuItem jMenuCadastroGrupoProdutos;
     private javax.swing.JMenuItem jMenuCadastroPessoa;
-    private javax.swing.JMenuItem jMenuCadastroProdutos;
     private javax.swing.JMenuItem jMenuCadastroSecoes;
     private javax.swing.JMenu jMenuCadastros;
     // End of variables declaration//GEN-END:variables

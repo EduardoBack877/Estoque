@@ -2,6 +2,7 @@
 package dao;
 import apoio.IDAOT;
 import apoio.ConexaoBD;
+import entidade.Prateleira;
 import entidade.Secao;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -9,32 +10,25 @@ import java.util.ArrayList;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
+import tela.IfrCadastroPrateleira;
 import tela.IfrCadastroSecoes;
 
-public class SecaoDAO implements IDAOT<Secao>  {
+public class PrateleiraDAO implements IDAOT<Prateleira>  {
         
     ResultSet resultadoQ = null;
     ResultSet resultadoQ1 = null;
 
     @Override
-    public boolean salvar(Secao s) {
+    public boolean salvar(Prateleira s) {
         try {
             Statement st = ConexaoBD.getInstance().getConnection().createStatement();
             String sql = "";
             
              if (s.getId() == 0) {
-                  sql = "INSERT INTO secao VALUES ( "
-                    + "default, "
-                    + "'" + s.getDescricao() + "'"
-                    + ")";
+                  sql = "INSERT INTO prateleira VALUES ( "
+                    + "default) ";
                   
-             } else {
-                 sql = "UPDATE secao "
-                        + "SET descricao = '" + s.getDescricao() + "'"
-                        + "WHERE id = " + s.getId();
-            }
-             
-
+             } 
             System.out.println("SQL: " + sql);
 
             int resultado = st.executeUpdate(sql);
@@ -42,37 +36,47 @@ public class SecaoDAO implements IDAOT<Secao>  {
             return resultado > 0;
 
         } catch (Exception e) {
-            System.out.println("Erro ao salvar seção: " + e);
+            System.out.println("Erro ao salvar prateleira: " + e);
             return false;
         }
     }
     
     public void popularTabela (JTable tabela, String criterio) {
-        String sql2 = "";
-        int numColunas = 2;
-        Secao s = new Secao();
-        IfrCadastroSecoes is = new IfrCadastroSecoes();
+        int numColunas = 1;
+        Prateleira s = new Prateleira();
+        IfrCadastroPrateleira is = new IfrCadastroPrateleira();
         // dados da tabela
         Object[][] dadosTabela = null;
 
         // cabecalho da tabela
         Object[] cabecalho = new Object[numColunas];
         cabecalho[0] = "Id";
-        cabecalho[1] = "Descrição";
         
         int lin = 0;
-        
-       
+        String sql2 = "'";
+        if (criterio.isEmpty()) {
+            criterio = "*";
+        } else {
+            criterio = criterio;
+        }
         //efetua consulta na tabela
         try {
-            resultadoQ = ConexaoBD.getInstance().getConnection().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, 
-  ResultSet.CONCUR_READ_ONLY).executeQuery(""
+            if (criterio == "*") {
+                resultadoQ = ConexaoBD.getInstance().getConnection().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, 
+  ResultSet.CONCUR_READ_ONLY).executeQuery(sql2=""
                     + "SELECT * "
-                    + "FROM secao " 
-                    + "WHERE descricao ILIKE '%" + criterio + "%'"
-                    + "ORDER BY id");
-
-
+                    + "FROM prateleira " 
+                    + " ORDER BY id");
+            } else {
+            resultadoQ = ConexaoBD.getInstance().getConnection().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, 
+  ResultSet.CONCUR_READ_ONLY).executeQuery(sql2=""
+                    + "SELECT * "
+                    + "FROM prateleira " 
+                    + "WHERE id =  " + criterio 
+                    + " ORDER BY id");
+            }
+            
+             System.out.println(resultadoQ);
             // vai para o ultima linha do RS
             // captura a linha = num de registros
             // retorna para o inicio
@@ -86,15 +90,14 @@ public class SecaoDAO implements IDAOT<Secao>  {
             while (resultadoQ.next()) {
 
                 dadosTabela[lin][0] = resultadoQ.getInt("id");
-                dadosTabela[lin][1] = resultadoQ.getString("descricao");
                       lin++;}
          
             
         } catch (Exception e) {
             System.out.println("problemas para popular tabela...");
             System.out.println(e);
+            System.out.println(sql2);
         }
-        System.out.println(sql2);
 
         // configuracoes adicionais no componente tabela
         tabela.setModel(new DefaultTableModel(dadosTabela, cabecalho) {
@@ -115,7 +118,7 @@ public class SecaoDAO implements IDAOT<Secao>  {
             @Override
             public Class getColumnClass(int column) {
 
-                if (column == 2) {
+                if (column == 1) {
 //                    return ImageIcon.class;
                 }
                 return Object.class;
@@ -156,12 +159,13 @@ public class SecaoDAO implements IDAOT<Secao>  {
 //                }
 //                return this;
 //            }
-//        });
+//        }); 
+      criterio = "";
     }
         
     
     @Override
-    public boolean atualizar(Secao o) {
+    public boolean atualizar(Prateleira o) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -170,7 +174,7 @@ public class SecaoDAO implements IDAOT<Secao>  {
         try {
             Statement st = ConexaoBD.getInstance().getConnection().createStatement();
 
-            String sql = "DELETE FROM secao "
+            String sql = "DELETE FROM prateleira "
                     + "WHERE id = " + id;
 
             System.out.println("SQL: " + sql);
@@ -180,48 +184,47 @@ public class SecaoDAO implements IDAOT<Secao>  {
             return true;
 
         } catch (Exception e) {
-            System.out.println("Erro ao excluir agendamento: " + e);
+            System.out.println("Erro ao excluir prateleira: " + e);
             return false;
         }
     }
 
     @Override
-    public ArrayList<Secao> consultarTodos() {
+    public ArrayList<Prateleira> consultarTodos() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public ArrayList<Secao> consultar(String criterio) {
+    public ArrayList<Prateleira> consultar(String criterio) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public Secao consultarId(int id) {
-        Secao secao = null;
+    public Prateleira consultarId(int id) {
+        Prateleira prat = null;
 
         try {
             Statement st = ConexaoBD.getInstance().getConnection().createStatement();
 
             String sql = "SELECT * "
-                    + "FROM secao "
+                    + "FROM prateleira "
                     + "WHERE id = " + id;
-            System.out.println("CONSULTA SECAO");
+            System.out.println("CONSULTA PRATELEIRA");
             System.out.println("SQL: " + sql);
 
             resultadoQ = st.executeQuery(sql);
 
             if (resultadoQ.next()) {
-                secao = new Secao();
+                prat = new Prateleira();
 
-                secao.setId(resultadoQ.getInt("id"));
-                secao.setDescricao(resultadoQ.getString("descricao"));
+                prat.setId(resultadoQ.getInt("id"));
             }
 
         } catch (Exception e) {
             System.out.println("Erro ao consultar seção: " + e);
         }
 
-        return secao;
+        return prat;
     }
 
 
