@@ -42,6 +42,7 @@ public class MainWindow extends javax.swing.JFrame {
         jMenuCadastroSecoes = new javax.swing.JMenuItem();
         jMenuCadastroGrupoProdutos = new javax.swing.JMenuItem();
         jMenuCadastroDePrateleiras = new javax.swing.JMenuItem();
+        jMenuCadastroProduto = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -92,6 +93,14 @@ public class MainWindow extends javax.swing.JFrame {
         });
         jMenuCadastros.add(jMenuCadastroDePrateleiras);
 
+        jMenuCadastroProduto.setText("Cadastro de Produtos");
+        jMenuCadastroProduto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuCadastroProdutoActionPerformed(evt);
+            }
+        });
+        jMenuCadastros.add(jMenuCadastroProduto);
+
         jMenuBar1.add(jMenuCadastros);
 
         jMenu2.setText("Movimentações");
@@ -137,6 +146,12 @@ public class MainWindow extends javax.swing.JFrame {
         p.setVisible(true);        // TODO add your handling code here:
     }//GEN-LAST:event_jMenuCadastroDePrateleirasActionPerformed
 
+    private void jMenuCadastroProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuCadastroProdutoActionPerformed
+        IfrCadastroProduto p = new IfrCadastroProduto();
+        jDesktopPane1.add(p);
+        p.setVisible(true);        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuCadastroProdutoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -180,6 +195,7 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuCadastroDePrateleiras;
     private javax.swing.JMenuItem jMenuCadastroGrupoProdutos;
     private javax.swing.JMenuItem jMenuCadastroPessoa;
+    private javax.swing.JMenuItem jMenuCadastroProduto;
     private javax.swing.JMenuItem jMenuCadastroSecoes;
     private javax.swing.JMenu jMenuCadastros;
     // End of variables declaration//GEN-END:variables
