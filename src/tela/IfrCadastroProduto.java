@@ -5,8 +5,10 @@
  */
 package tela;
 
+import dao.ProdutoDAO;
 import dao.SecaoDAO;
 import entidade.Secao;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 
 /**
@@ -17,10 +19,18 @@ public class IfrCadastroProduto extends javax.swing.JInternalFrame {
         
         
     public IfrCadastroProduto() {
+        ProdutoDAO prodDAO = new ProdutoDAO();
         initComponents();
         setarTfdIdEditable();
         tfdIdSecao.setText("0");
+        prodDAO.popularCombo(jComboSecao);
+        
+        
+        
+        
+
     }
+    
             
 
     @SuppressWarnings("unchecked")
@@ -228,7 +238,7 @@ public class IfrCadastroProduto extends javax.swing.JInternalFrame {
 
         jComboGrupo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jComboSecao.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboSecao.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecionar" }));
         jComboSecao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboSecaoActionPerformed(evt);
@@ -441,6 +451,7 @@ public class IfrCadastroProduto extends javax.swing.JInternalFrame {
 
     private void btnPesquisarSecoesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarSecoesActionPerformed
        new SecaoDAO().popularTabela(TSecao,tfdPesquisarSecoes.getText());
+       
     }//GEN-LAST:event_btnPesquisarSecoesActionPerformed
 
     private void btnExcluirSecoesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirSecoesActionPerformed
@@ -467,6 +478,9 @@ public class IfrCadastroProduto extends javax.swing.JInternalFrame {
             
     }//GEN-LAST:event_btnExcluirSecoesActionPerformed
 
+    
+    
+    
     private void btnEditarSecoesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarSecoesActionPerformed
         String idString = String.valueOf(TSecao.getValueAt(TSecao.getSelectedRow(), 0));
      

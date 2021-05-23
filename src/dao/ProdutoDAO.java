@@ -2,37 +2,58 @@
 package dao;
 import apoio.IDAOT;
 import apoio.ConexaoBD;
-import entidade.Secao;
-import entidade.GrupoProduto;
+import entidade.Produto;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.scene.control.ComboBox;
+import javax.swing.JComboBox;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import tela.IfrCadastroSecoes;
 
-public class ProdutoDAO implements IDAOT<GrupoProduto>  {
+public class ProdutoDAO implements IDAOT<Produto>  {
         
     ResultSet resultadoQ = null;
     ResultSet resultadoQ1 = null;
+    ResultSet resultadoQ3 = null;
+    List<String> lista = new ArrayList<String>();
 
 
-    public boolean salvar(GrupoProduto g) {
+    public boolean salvar(Produto g) {
         try {
             Statement st = ConexaoBD.getInstance().getConnection().createStatement();
             String sql = "";
             
              if (g.getId() == 0) {
-                  sql = "INSERT INTO grupoproduto VALUES ( "
+                  sql = "INSERT INTO produto VALUES ( "
                     + "default, "
                     + "'" + g.getDescricao() + "'"
+                    + "'" + g.getCor() + "'"
+                    + "'" + g.getMarca() + "'"
+                    + "'" + g.getTamanho() + "'"
+                    + "'" + g.getQtd() + "'"  
+                    + "'" + g.getCodsecao() + "'"
+                    + "'" + g.getCodgrupo()+ "'"
+                    + "'" + g.getCodprat() + "'"
                     + ")";
                   
              } else {
-                 sql = "UPDATE grupoproduto "
-                        + "SET descricao = '" + g.getDescricao() + "'"
-                        + "WHERE id = " + g.getId();
+                 sql = "UPDATE produto "
+                    + "SET descricao = '" + g.getDescricao() + "',"
+                    + "'" + g.getCor() + "',"
+                    + "'" + g.getMarca() + "',"
+                    + "'" + g.getTamanho() + "',"
+                    + "'" + g.getQtd() + "',"  
+                    + "'" + g.getCodsecao() + "',"
+                    + "'" + g.getCodgrupo()+ "',"
+                    + "'" + g.getCodprat() + "'"
+                    + "WHERE id = " + g.getId();
             }
              
 
@@ -43,14 +64,32 @@ public class ProdutoDAO implements IDAOT<GrupoProduto>  {
             return resultado > 0;
 
         } catch (Exception e) {
-            System.out.println("Erro ao salvar Grupo: " + e);
+            System.out.println("Erro ao salvar produto: " + e);
             return false;
         }
     }
     
+   
+    public void popularCombo (JComboBox combo) {
+        try {
+            Statement st2 = ConexaoBD.getInstance().getConnection().createStatement();
+            String sql3 = "SELECT descricao FROM secao";
+            resultadoQ3 = st2.executeQuery(sql3);
+            combo.removeAllItems();
+            while (resultadoQ3.next()) {
+               combo.addItem(resultadoQ3.getString("descricao"));
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+      
+    }
+    
+    
     public void popularTabela (JTable tabela, String criterio) {
-        int numColunas = 2;
-        Secao s = new Secao();
+        int numColunas = 9;
+        Produto s = new Produto();
         IfrCadastroSecoes is = new IfrCadastroSecoes();
         // dados da tabela
         Object[][] dadosTabela = null;
@@ -59,6 +98,15 @@ public class ProdutoDAO implements IDAOT<GrupoProduto>  {
         Object[] cabecalho = new Object[numColunas];
         cabecalho[0] = "Id";
         cabecalho[1] = "Descrição";
+        cabecalho[2] = "Cor";
+        cabecalho[3] = "Marca";
+        cabecalho[4] = "Tamanho";
+        cabecalho[5] = "Quantidade";
+        cabecalho[6] = "Seção";
+        cabecalho[7] = "Grupo";
+        cabecalho[8] = "Prateleira";
+        
+        
         
         int lin = 0;
         
@@ -68,7 +116,7 @@ public class ProdutoDAO implements IDAOT<GrupoProduto>  {
             resultadoQ = ConexaoBD.getInstance().getConnection().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, 
   ResultSet.CONCUR_READ_ONLY).executeQuery(""
                     + "SELECT * "
-                    + "FROM grupoproduto " 
+                    + "FROM produto " 
                     + "WHERE descricao ILIKE '%" + criterio + "%'"
                     + "ORDER BY id");
             
@@ -87,6 +135,15 @@ public class ProdutoDAO implements IDAOT<GrupoProduto>  {
 
                 dadosTabela[lin][0] = resultadoQ.getInt("id");
                 dadosTabela[lin][1] = resultadoQ.getString("descricao");
+                dadosTabela[lin][2] = resultadoQ.getString("cor");
+                dadosTabela[lin][3] = resultadoQ.getString("marca");
+                dadosTabela[lin][4] = resultadoQ.getString("tamanho");
+                dadosTabela[lin][5] = resultadoQ.getString("qtd");
+                dadosTabela[lin][6] = resultadoQ.getString("codsecao");
+                dadosTabela[lin][7] = resultadoQ.getString("descricao");
+                dadosTabela[lin][8] = resultadoQ.getString("descricao");
+                
+             
                       lin++;}
          
             
@@ -160,7 +217,7 @@ public class ProdutoDAO implements IDAOT<GrupoProduto>  {
         
     
     @Override
-    public boolean atualizar(GrupoProduto o) {
+    public boolean atualizar(Produto o) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -169,7 +226,7 @@ public class ProdutoDAO implements IDAOT<GrupoProduto>  {
         try {
             Statement st = ConexaoBD.getInstance().getConnection().createStatement();
 
-            String sql = "DELETE FROM grupoproduto "
+            String sql = "DELETE FROM produto "
                     + "WHERE id = " + id;
 
             System.out.println("SQL: " + sql);
@@ -185,24 +242,24 @@ public class ProdutoDAO implements IDAOT<GrupoProduto>  {
     }
 
     @Override
-    public ArrayList<GrupoProduto> consultarTodos() {
+    public ArrayList<Produto> consultarTodos() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public ArrayList<GrupoProduto> consultar(String criterio) {
+    public ArrayList<Produto> consultar(String criterio) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public GrupoProduto consultarId(int id) {
-        GrupoProduto GrupoProduto = null;
+    public Produto consultarId(int id) {
+        Produto Produto = null;
 
         try {
             Statement st = ConexaoBD.getInstance().getConnection().createStatement();
 
             String sql = "SELECT * "
-                    + "FROM grupoproduto "
+                    + "FROM produto "
                     + "WHERE id = " + id;
             System.out.println("CONSULTA GRUPO");
             System.out.println("SQL: " + sql);
@@ -210,17 +267,17 @@ public class ProdutoDAO implements IDAOT<GrupoProduto>  {
             resultadoQ = st.executeQuery(sql);
 
             if (resultadoQ.next()) {
-                GrupoProduto = new GrupoProduto();
+                Produto = new Produto();
 
-                GrupoProduto.setId(resultadoQ.getInt("id"));
-                GrupoProduto.setDescricao(resultadoQ.getString("descricao"));
+                Produto.setId(resultadoQ.getInt("id"));
+                Produto.setDescricao(resultadoQ.getString("descricao"));
             }
 
         } catch (Exception e) {
             System.out.println("Erro ao consultar grupo: " + e);
         }
 
-        return GrupoProduto;
+        return Produto;
     }
 
 
