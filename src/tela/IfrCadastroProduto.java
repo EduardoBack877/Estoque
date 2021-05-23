@@ -27,6 +27,7 @@ public class IfrCadastroProduto extends javax.swing.JInternalFrame {
         prodDAO.popularComboSecao(jComboSecao);
         prodDAO.popularComboGrupo(jComboGrupo);
         prodDAO.popularComboPrateleira(jComboPrateleira);
+        TProduto.setDefaultEditor(Object.class, null);
         
     }
     
@@ -483,15 +484,15 @@ public class IfrCadastroProduto extends javax.swing.JInternalFrame {
                 System.out.println(idString);
             int idExclusao = Integer.parseInt(idString);
 
-            SecaoDAO sDAO = new SecaoDAO();
+            ProdutoDAO sDAO = new ProdutoDAO();
             
             if (sDAO.excluir(idExclusao)) {
-                    JOptionPane.showMessageDialog(null, "Seção excluída com sucesso!");
+                    JOptionPane.showMessageDialog(null, "Produto excluído com sucesso!");
                 sDAO.popularTabela(TProduto, tfdPesquisarProduto.getText());
             
             
             } else {
-                JOptionPane.showMessageDialog(null, "Problemas ao excluir Seção.");
+                JOptionPane.showMessageDialog(null, "Problemas ao excluir produto.");
             }
         }
             
@@ -517,6 +518,9 @@ public class IfrCadastroProduto extends javax.swing.JInternalFrame {
             tfdIdProd.setText(""+produto.getId());
             tfdDescricaoProd.setText(produto.getDescricao());
             tfdCorProd.setText(produto.getCor());
+            int aux;
+            aux = produto.getCodsecao();
+            System.out.println(aux);
             tfdMarcaProd.setText(produto.getMarca());
             tfdTamanhoProd.setText(produto.getTamanho());
             tfdQtdProd.setText(""+produto.getQtd());
@@ -540,6 +544,14 @@ public class IfrCadastroProduto extends javax.swing.JInternalFrame {
     private void btnLimparCamposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparCamposActionPerformed
             tfdIdProd.setText("0");
             tfdDescricaoProd.setText("");
+            tfdDescricaoProd.requestFocus();
+            tfdCorProd.setText("");
+            tfdMarcaProd.setText("");
+            tfdTamanhoProd.setText("");
+            tfdQtdProd.setText("");
+            jComboGrupo.setSelectedIndex(0);
+            jComboPrateleira.setSelectedIndex(0);
+            jComboSecao.setSelectedIndex(0);
     }//GEN-LAST:event_btnLimparCamposActionPerformed
 
     private void btnFecharSecaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFecharSecaoActionPerformed

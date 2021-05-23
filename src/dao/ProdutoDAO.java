@@ -49,13 +49,13 @@ public class ProdutoDAO implements IDAOT<Produto>  {
              } else {
                  sql = "UPDATE produto "
                     + "SET descricao = '" + g.getDescricao() + "',"
-                    + "'" + g.getCor() + "',"
-                    + "'" + g.getMarca() + "',"
-                    + "'" + g.getTamanho() + "',"
-                    + "'" + g.getQtd() + "',"  
-                    + "'" + g.getCodsecao() + "',"
-                    + "'" + g.getCodgrupo()+ "',"
-                    + "'" + g.getCodprat() + "'"
+                    + "cor = '" + g.getCor() + "',"
+                    + "marca = '" + g.getMarca() + "',"
+                    + "tamanho ='" + g.getTamanho() + "',"
+                    + "qtd = '" + g.getQtd() + "',"  
+                    + "codsecao = '" + g.getCodsecao() + "',"
+                    + "codgrupo = '" + g.getCodgrupo()+ "',"
+                    + "codprat = '" + g.getCodprat() + "' "
                     + "WHERE id = " + g.getId();
             }
              
@@ -303,8 +303,11 @@ public class ProdutoDAO implements IDAOT<Produto>  {
             Statement st = ConexaoBD.getInstance().getConnection().createStatement();
 
             String sql = "SELECT * "
-                    + "FROM produto "
-                    + "WHERE id = " + id;
+                    + "FROM produto p "
+                    + "LEFT JOIN grupoproduto G ON p.codgrupo = G.id "
+                    + "LEFT JOIN secao S ON p.codsecao = S.id "
+                    + "LEFT JOIN prateleira PR ON p.codprat = PR.id "
+                    + "WHERE p.id = " + id;
             System.out.println("CONSULTA GRUPO");
             System.out.println("SQL: " + sql);
 
@@ -315,10 +318,19 @@ public class ProdutoDAO implements IDAOT<Produto>  {
 
                 Produto.setId(resultadoQ.getInt("id"));
                 Produto.setDescricao(resultadoQ.getString("descricao"));
+                Produto.setCor(resultadoQ.getString("cor"));
+                Produto.setMarca(resultadoQ.getString("marca"));
+                Produto.setTamanho(resultadoQ.getString("tamanho"));
+                Produto.setQtd(resultadoQ.getInt("qtd"));
+                Produto.setCodsecao(resultadoQ.getInt("codsecao"));
+                Produto.setCodgrupo(resultadoQ.getInt("codgrupo"));
+                Produto.setCodprat(resultadoQ.getInt("codprat"));
+                
+                
             }
 
         } catch (Exception e) {
-            System.out.println("Erro ao consultar grupo: " + e);
+            System.out.println("Erro ao consultar produto: " + e);
         }
 
         return Produto;
