@@ -22,6 +22,9 @@ public class ProdutoDAO implements IDAOT<Produto>  {
     ResultSet resultadoQ = null;
     ResultSet resultadoQ1 = null;
     ResultSet resultadoQ3 = null;
+    ResultSet resultadoQ4 = null;
+    ResultSet resultadoQ5 = null;
+    
     List<String> lista = new ArrayList<String>();
 
 
@@ -33,13 +36,13 @@ public class ProdutoDAO implements IDAOT<Produto>  {
              if (g.getId() == 0) {
                   sql = "INSERT INTO produto VALUES ( "
                     + "default, "
-                    + "'" + g.getDescricao() + "'"
-                    + "'" + g.getCor() + "'"
-                    + "'" + g.getMarca() + "'"
-                    + "'" + g.getTamanho() + "'"
-                    + "'" + g.getQtd() + "'"  
-                    + "'" + g.getCodsecao() + "'"
-                    + "'" + g.getCodgrupo()+ "'"
+                    + "'" + g.getDescricao() + "',"
+                    + "'" + g.getCor() + "',"
+                    + "'" + g.getMarca() + "',"
+                    + "'" + g.getTamanho() + "',"
+                    + "'" + g.getQtd() + "',"  
+                    + "'" + g.getCodsecao() + "',"
+                    + "'" + g.getCodgrupo()+ "',"
                     + "'" + g.getCodprat() + "'"
                     + ")";
                   
@@ -70,12 +73,13 @@ public class ProdutoDAO implements IDAOT<Produto>  {
     }
     
    
-    public void popularCombo (JComboBox combo) {
+    public void popularComboSecao (JComboBox combo) {
         try {
             Statement st2 = ConexaoBD.getInstance().getConnection().createStatement();
             String sql3 = "SELECT descricao FROM secao";
             resultadoQ3 = st2.executeQuery(sql3);
             combo.removeAllItems();
+            combo.addItem("Selecione");
             while (resultadoQ3.next()) {
                combo.addItem(resultadoQ3.getString("descricao"));
             }
@@ -85,6 +89,43 @@ public class ProdutoDAO implements IDAOT<Produto>  {
         }
       
     }
+    
+    public void popularComboGrupo (JComboBox combo) {
+        try {
+            Statement st2 = ConexaoBD.getInstance().getConnection().createStatement();
+            String sql4 = "SELECT descricao FROM grupoproduto";
+            resultadoQ4 = st2.executeQuery(sql4);
+            combo.removeAllItems();
+            combo.addItem("Selecione");
+            while (resultadoQ4.next()) {
+               combo.addItem(resultadoQ4.getString("descricao"));
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+      
+    }
+    
+     public void popularComboPrateleira (JComboBox combo) {
+        try {
+            Statement st2 = ConexaoBD.getInstance().getConnection().createStatement();
+            String sql5 = "SELECT id FROM prateleira";
+            resultadoQ5 = st2.executeQuery(sql5);
+            combo.removeAllItems();
+            combo.addItem("Selecione");
+            while (resultadoQ5.next()) {
+               combo.addItem(resultadoQ5.getString("id"));
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+      
+    }
+    
+    
+    
     
     
     public void popularTabela (JTable tabela, String criterio) {
@@ -115,10 +156,13 @@ public class ProdutoDAO implements IDAOT<Produto>  {
         try {
             resultadoQ = ConexaoBD.getInstance().getConnection().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, 
   ResultSet.CONCUR_READ_ONLY).executeQuery(""
-                    + "SELECT * "
-                    + "FROM produto " 
-                    + "WHERE descricao ILIKE '%" + criterio + "%'"
-                    + "ORDER BY id");
+                    + "SELECT p.id, p.descricao, p.cor, p.marca, p.tamanho, p.qtd, S.descricao AS secao, G.descricao AS grupo, PR.id as prateleira "
+                    + "FROM produto p " 
+                    + "LEFT JOIN grupoproduto G ON p.codgrupo = G.id "
+                    + "LEFT JOIN secao S ON p.codsecao = S.id "
+                    + "LEFT JOIN prateleira PR ON p.codprat = PR.id "
+                    + "WHERE p.descricao ILIKE '%" + criterio + "%'"
+                    + "ORDER BY p.id");
             
 
             // vai para o ultima linha do RS
@@ -139,9 +183,9 @@ public class ProdutoDAO implements IDAOT<Produto>  {
                 dadosTabela[lin][3] = resultadoQ.getString("marca");
                 dadosTabela[lin][4] = resultadoQ.getString("tamanho");
                 dadosTabela[lin][5] = resultadoQ.getString("qtd");
-                dadosTabela[lin][6] = resultadoQ.getString("codsecao");
-                dadosTabela[lin][7] = resultadoQ.getString("descricao");
-                dadosTabela[lin][8] = resultadoQ.getString("descricao");
+                dadosTabela[lin][6] = resultadoQ.getString("secao");
+                dadosTabela[lin][7] = resultadoQ.getString("grupo");
+                dadosTabela[lin][8] = resultadoQ.getString("prateleira");
                 
              
                       lin++;}

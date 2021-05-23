@@ -19,13 +19,29 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" attributes="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
+                      <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jSeparator1" min="-2" pref="50" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="310" max="-2" attributes="0"/>
+                      <Component id="jLabelConsultaSecao" min="-2" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+              <EmptySpace max="32767" attributes="0"/>
+          </Group>
           <Group type="102" alignment="1" attributes="0">
               <Group type="103" groupAlignment="1" attributes="0">
+                  <Component id="jLabel1" alignment="1" max="32767" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="74" max="-2" attributes="0"/>
                       <Component id="jLabelPesquisarSecoes" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="tfdPesquisarSecoes" pref="625" max="32767" attributes="0"/>
+                      <Component id="tfdPesquisarProduto" pref="623" max="32767" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="btnPesquisarSecoes" min="-2" max="-2" attributes="0"/>
                   </Group>
@@ -58,76 +74,50 @@
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="1" attributes="0">
-                              <Group type="103" groupAlignment="1" attributes="0">
-                                  <Component id="tfdDescricaoSecao2" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="tfdDescricaoSecao1" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="tfdDescricaoSecao" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="tfdDescricaoSecao4" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="tfdDescricaoSecao7" alignment="0" max="32767" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="2" pref="2" max="-2" attributes="0"/>
-                          </Group>
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="tfdIdSecao" min="-2" pref="53" max="-2" attributes="0"/>
-                                  <Component id="jComboPrateleira" min="-2" max="-2" attributes="0"/>
+                                  <Component id="tfdIdProd" min="-2" pref="53" max="-2" attributes="0"/>
                                   <Component id="jComboGrupo" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jComboSecao" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jComboSecao" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                      <Component id="btnFecharSecao" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" attributes="0">
+                                      <Component id="jComboPrateleira" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="32767" attributes="0"/>
+                                      <Component id="btnLimparCampos" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
+                                      <Component id="btnSalvarProduto" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Component id="tfdMarcaProd" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="tfdCorProd" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="tfdDescricaoProd" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="tfdTamanhoProd" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="tfdQtdProd" alignment="0" max="32767" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="2" pref="2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                  </Group>
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Component id="btnEditarProduto" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+                              <Component id="btnExcluirSecoes" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="jScrollPane1" min="-2" pref="827" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
               <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
-          </Group>
-          <Group type="102" alignment="0" attributes="0">
-              <Group type="103" groupAlignment="1" attributes="0">
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jSeparator1" min="-2" pref="50" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="310" max="-2" attributes="0"/>
-                          <Component id="jLabelConsultaSecao" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
-                          <Component id="jLabel1" min="-2" pref="818" max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
-                  <Group type="102" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="jScrollPane1" alignment="1" min="-2" pref="827" max="-2" attributes="0"/>
-                          <Group type="102" attributes="0">
-                              <Component id="btnEditarSecoes" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="btnExcluirSecoes" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                  </Group>
-              </Group>
-              <EmptySpace max="32767" attributes="0"/>
-          </Group>
-          <Group type="102" alignment="0" attributes="0">
-              <Group type="103" groupAlignment="1" attributes="0">
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
-                      <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace max="32767" attributes="0"/>
-                      <Component id="btnLimparCampos" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                  </Group>
-              </Group>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="btnSalvarSecao" min="-2" max="-2" attributes="0"/>
-                  <Component id="btnFecharSecao" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -141,51 +131,51 @@
               </Group>
               <EmptySpace min="-2" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="tfdPesquisarSecoes" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="tfdPesquisarProduto" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabelPesquisarSecoes" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btnPesquisarSecoes" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
-              <Component id="jScrollPane1" pref="157" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
+              <Component id="jScrollPane1" min="-2" pref="152" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="btnExcluirSecoes" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="btnEditarSecoes" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnEditarProduto" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="tfdIdSecao" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="tfdIdProd" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="tfdDescricaoSecao" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="tfdDescricaoProd" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabelDescricaoSecao" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="tfdDescricaoSecao1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="tfdCorProd" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabelDescricaoSecao1" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="tfdDescricaoSecao2" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="tfdMarcaProd" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabelDescricaoSecao2" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="tfdDescricaoSecao4" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="tfdTamanhoProd" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabelDescricaoSecao3" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel10" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="tfdDescricaoSecao7" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="tfdQtdProd" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabelDescricaoSecao4" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel9" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
@@ -206,15 +196,12 @@
                   <Component id="jLabelDescricaoSecao7" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jComboPrateleira" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="btnSalvarSecao" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btnLimparCampos" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnSalvarProduto" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="btnFecharSecao" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
+              <Component id="btnFecharSecao" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -227,9 +214,9 @@
         <Property name="text" type="java.lang.String" value="Pesquisar:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="tfdPesquisarSecoes">
+    <Component class="javax.swing.JTextField" name="tfdPesquisarProduto">
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tfdPesquisarSecoesActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tfdPesquisarProdutoActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnPesquisarSecoes">
@@ -247,10 +234,10 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JTable" name="TSecao">
+        <Component class="javax.swing.JTable" name="TProduto">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="9" rowCount="7">
+              <Table columnCount="9" rowCount="8">
                 <Column editable="true" title="Id" type="java.lang.Object"/>
                 <Column editable="true" title="Descri&#xe7;&#xe3;o" type="java.lang.Object"/>
                 <Column editable="true" title="Cor" type="java.lang.Object"/>
@@ -318,12 +305,12 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JButton" name="btnEditarSecoes">
+    <Component class="javax.swing.JButton" name="btnEditarProduto">
       <Properties>
         <Property name="text" type="java.lang.String" value="Editar"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnEditarSecoesActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnEditarProdutoActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnExcluirSecoes">
@@ -347,9 +334,9 @@
         <Property name="text" type="java.lang.String" value="Descri&#xe7;&#xe3;o"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="tfdDescricaoSecao">
+    <Component class="javax.swing.JTextField" name="tfdDescricaoProd">
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tfdDescricaoSecaoActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tfdDescricaoProdActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">
@@ -360,12 +347,12 @@
         <Property name="text" type="java.lang.String" value="*"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="btnSalvarSecao">
+    <Component class="javax.swing.JButton" name="btnSalvarProduto">
       <Properties>
         <Property name="text" type="java.lang.String" value="Salvar"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSalvarSecaoActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSalvarProdutoActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnFecharSecao">
@@ -389,9 +376,9 @@
         <Property name="text" type="java.lang.String" value="Id"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="tfdIdSecao">
+    <Component class="javax.swing.JTextField" name="tfdIdProd">
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tfdIdSecaoActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tfdIdProdActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnLimparCampos">
@@ -461,24 +448,24 @@
         <Property name="text" type="java.lang.String" value="Prateleira"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="tfdDescricaoSecao1">
+    <Component class="javax.swing.JTextField" name="tfdCorProd">
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tfdDescricaoSecao1ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tfdCorProdActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JTextField" name="tfdDescricaoSecao2">
+    <Component class="javax.swing.JTextField" name="tfdMarcaProd">
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tfdDescricaoSecao2ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tfdMarcaProdActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JTextField" name="tfdDescricaoSecao4">
+    <Component class="javax.swing.JTextField" name="tfdTamanhoProd">
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tfdDescricaoSecao4ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tfdTamanhoProdActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JTextField" name="tfdDescricaoSecao7">
+    <Component class="javax.swing.JTextField" name="tfdQtdProd">
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tfdDescricaoSecao7ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tfdQtdProdActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel7">
@@ -516,11 +503,8 @@
     <Component class="javax.swing.JComboBox" name="jComboPrateleira">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="4">
-            <StringItem index="0" value="Item 1"/>
-            <StringItem index="1" value="Item 2"/>
-            <StringItem index="2" value="Item 3"/>
-            <StringItem index="3" value="Item 4"/>
+          <StringArray count="1">
+            <StringItem index="0" value="Selecionar"/>
           </StringArray>
         </Property>
       </Properties>
@@ -534,11 +518,8 @@
     <Component class="javax.swing.JComboBox" name="jComboGrupo">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="4">
-            <StringItem index="0" value="Item 1"/>
-            <StringItem index="1" value="Item 2"/>
-            <StringItem index="2" value="Item 3"/>
-            <StringItem index="3" value="Item 4"/>
+          <StringArray count="1">
+            <StringItem index="0" value="Selecionar"/>
           </StringArray>
         </Property>
       </Properties>
