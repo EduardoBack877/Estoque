@@ -16,6 +16,35 @@ public class Produto {
     int codsecao;
     int codprat;
     int codgrupo;
+    String secao;
+    String prateleira;
+    String grupo;
+
+    public String getSecao() {
+        return secao;
+    }
+
+    public void setSecao(String secao) {
+        this.secao = secao;
+    }
+
+    public String getPrateleira() {
+        return prateleira;
+    }
+
+    public void setPrateleira(String prateleira) {
+        this.prateleira = prateleira;
+    }
+
+    public String getGrupo() {
+        return grupo;
+    }
+
+    public void setGrupo(String grupo) {
+        this.grupo = grupo;
+    }
+    
+    
     
     public int getId() {
         return id;

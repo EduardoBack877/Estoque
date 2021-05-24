@@ -1,64 +1,48 @@
-
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package dao;
-import apoio.IDAOT;
+
 import apoio.ConexaoBD;
-import entidade.Secao;
+import entidade.Movestoque;
+import entidade.Produto;
 import java.sql.ResultSet;
-import java.sql.Statement;
-import java.util.ArrayList;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
+import tela.IfrCadastroProduto;
 import tela.IfrCadastroSecoes;
+import tela.IfrMovEstoque;
 
-public class SecaoDAO implements IDAOT<Secao>  {
-        
+/**
+ *
+ * @author Back
+ */
+public class MovestoqueDAO {
+    
     ResultSet resultadoQ = null;
-    ResultSet resultadoQ1 = null;
-
-    @Override
-    public boolean salvar(Secao s) {
-        try {
-            Statement st = ConexaoBD.getInstance().getConnection().createStatement();
-            String sql = "";
-            
-             if (s.getId() == 0) {
-                  sql = "INSERT INTO secao VALUES ( "
-                    + "default, "
-                    + "'" + s.getDescricao() + "'"
-                    + ")";
-                  
-             } else {
-                 sql = "UPDATE secao "
-                        + "SET descricao = '" + s.getDescricao() + "'"
-                        + "WHERE id = " + s.getId();
-            }
-             
-
-            System.out.println("SQL: " + sql);
-
-            int resultado = st.executeUpdate(sql);
-
-            return resultado > 0;
-
-        } catch (Exception e) {
-            System.out.println("Erro ao salvar seção: " + e);
-            return false;
-        }
-    }
+    ResultSet resultadoQ2 = null;
     
     public void popularTabela (JTable tabela, String criterio) {
-        String sql2 = "";
-        int numColunas = 2;
-        Secao s = new Secao();
-        IfrCadastroSecoes is = new IfrCadastroSecoes();
+        int numColunas = 4;
+        Produto s = new Produto();
+        IfrCadastroProduto is = new IfrCadastroProduto();
         // dados da tabela
         Object[][] dadosTabela = null;
 
         // cabecalho da tabela
         Object[] cabecalho = new Object[numColunas];
         cabecalho[0] = "Id";
-        cabecalho[1] = "Descrição";
+        cabecalho[1] = "Produto";
+        cabecalho[2] = "Grupo";
+        cabecalho[3] = "Quantidade em Estoque";
+        
+        
         
         int lin = 0;
         
@@ -67,12 +51,21 @@ public class SecaoDAO implements IDAOT<Secao>  {
         try {
             resultadoQ = ConexaoBD.getInstance().getConnection().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, 
   ResultSet.CONCUR_READ_ONLY).executeQuery(""
-                    + "SELECT * "
-                    + "FROM secao " 
-                    + "WHERE descricao ILIKE '%" + criterio + "%'"
-                    + "ORDER BY id");
-
-
+                    + "SELECT p.id, p.descricao, G.descricao AS grupo, p.qtd  "
+                    + "FROM produto p " 
+                    + "LEFT JOIN grupoproduto G ON p.codgrupo = G.id "
+                    + "WHERE p.descricao ILIKE '%" + criterio + "%'"
+                    + "ORDER BY p.id");
+            
+            resultadoQ2 = ConexaoBD.getInstance().getConnection().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, 
+  ResultSet.CONCUR_READ_ONLY).executeQuery(""
+                    + "SELECT p.id, p.descricao, p.cor, p.marca, p.tamanho, p.qtd, S.descricao AS secao, G.descricao AS grupo, PR.id as prateleira "
+                    + "FROM produto p " 
+                    + "LEFT JOIN grupoproduto G ON p.codgrupo = G.id "
+                    + "LEFT JOIN secao S ON p.codsecao = S.id "
+                    + "LEFT JOIN prateleira PR ON p.codprat = PR.id "
+                    + "WHERE p.descricao ILIKE '%" + criterio + "%'"
+                    + "ORDER BY p.id");
             // vai para o ultima linha do RS
             // captura a linha = num de registros
             // retorna para o inicio
@@ -87,14 +80,16 @@ public class SecaoDAO implements IDAOT<Secao>  {
 
                 dadosTabela[lin][0] = resultadoQ.getInt("id");
                 dadosTabela[lin][1] = resultadoQ.getString("descricao");
-                      lin++;}
+                dadosTabela[lin][2] = resultadoQ.getString("grupo");
+                dadosTabela[lin][3] = resultadoQ.getString("qtd");
+                      lin++;
+            }
          
             
         } catch (Exception e) {
             System.out.println("problemas para popular tabela...");
             System.out.println(e);
         }
-        System.out.println(sql2);
 
         // configuracoes adicionais no componente tabela
         tabela.setModel(new DefaultTableModel(dadosTabela, cabecalho) {
@@ -158,73 +153,9 @@ public class SecaoDAO implements IDAOT<Secao>  {
 //            }
 //        });
     }
-        
     
-    @Override
-    public boolean atualizar(Secao o) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean excluir(int id) {
-        try {
-            Statement st = ConexaoBD.getInstance().getConnection().createStatement();
-
-            String sql = "DELETE FROM secao "
-                    + "WHERE id = " + id;
-
-            System.out.println("SQL: " + sql);
-
-            st.executeUpdate(sql);
-
-            return true;
-
-        } catch (Exception e) {
-            System.out.println("Erro ao excluir Seção: " + e);
-            return false;
-        }
-    }
-
-    @Override
-    public ArrayList<Secao> consultarTodos() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public ArrayList<Secao> consultar(String criterio) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public Secao consultarId(int id) {
-        Secao secao = null;
-
-        try {
-            Statement st = ConexaoBD.getInstance().getConnection().createStatement();
-
-            String sql = "SELECT * "
-                    + "FROM secao "
-                    + "WHERE id = " + id;
-            System.out.println("CONSULTA SECAO");
-            System.out.println("SQL: " + sql);
-
-            resultadoQ = st.executeQuery(sql);
-
-            if (resultadoQ.next()) {
-                secao = new Secao();
-
-                secao.setId(resultadoQ.getInt("id"));
-                secao.setDescricao(resultadoQ.getString("descricao"));
-            }
-
-        } catch (Exception e) {
-            System.out.println("Erro ao consultar seção: " + e);
-        }
-
-        return secao;
-    }
-
-
+   
     
+
     
 }

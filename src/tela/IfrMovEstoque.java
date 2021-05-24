@@ -5,19 +5,39 @@
  */
 package tela;
 
+import dao.MovestoqueDAO;
+import dao.ProdutoDAO;
+import entidade.Produto;
+
 /**
  *
  * @author Back
  */
 public class IfrMovEstoque extends javax.swing.JInternalFrame {
 
-    /**
-     * Creates new form IfrMovEstoque
-     */
     public IfrMovEstoque() {
         initComponents();
+           
+            tfdIdProd.setEditable(false);
+            TfdDescricaoProd.setEditable(false);
+            tfdCorProd.setEditable(false);
+            tfdMarcaProd.setEditable(false);
+            tfdTamanhoProd.setEditable(false);
+            tfdQtdProd.setEditable(false);
+            tfdSecaoProd.setEditable(false);
+            tfdGrupoProd.setEditable(false);
+           if (jCheckBoxEntrada.isSelected()) {
+               jCheckBoxSaida.setEnabled(true);
+           } 
+           if (jCheckBoxSaida.isSelected()) {       
+              jCheckBoxEntrada.setEnabled(false);
+           };
+           
+    
     }
+   
 
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -28,12 +48,12 @@ public class IfrMovEstoque extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jCheckBox1 = new javax.swing.JCheckBox();
-        jCheckBox2 = new javax.swing.JCheckBox();
+        jCheckBoxEntrada = new javax.swing.JCheckBox();
+        jCheckBoxSaida = new javax.swing.JCheckBox();
         jLabel4 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jTextField1 = new javax.swing.JTextField();
+        TMovEstoque = new javax.swing.JTable();
+        tfdConsultarProduto = new javax.swing.JTextField();
         btnPesquisarProd = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         btnPesquisarProd1 = new javax.swing.JButton();
@@ -41,45 +61,45 @@ public class IfrMovEstoque extends javax.swing.JInternalFrame {
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
+        TfdDescricaoProd = new javax.swing.JTextField();
+        tfdIdProd = new javax.swing.JTextField();
+        tfdMarcaProd = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jTextField5 = new javax.swing.JTextField();
-        jTextField6 = new javax.swing.JTextField();
-        jTextField7 = new javax.swing.JTextField();
+        tfdTamanhoProd = new javax.swing.JTextField();
+        tfdCorProd = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
-        jTextField8 = new javax.swing.JTextField();
+        tfdGrupoProd = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
         jTextField9 = new javax.swing.JTextField();
         jLabel15 = new javax.swing.JLabel();
-        jTextField10 = new javax.swing.JTextField();
+        tfdSecaoProd = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jTextField11 = new javax.swing.JTextField();
+        tfdQtdProd = new javax.swing.JTextField();
         jLabel16 = new javax.swing.JLabel();
-        jTextField12 = new javax.swing.JTextField();
-        btnPesquisarProd2 = new javax.swing.JButton();
+        tfdPratProd = new javax.swing.JTextField();
+        btnCarregarInfo = new javax.swing.JButton();
         btnPesquisarProd3 = new javax.swing.JButton();
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setText("Movimentação de Estoque");
 
-        jCheckBox1.setText("Entrada de Produtos");
+        jCheckBoxEntrada.setText("Entrada de Produtos");
 
-        jCheckBox2.setText("Saída de Produtos");
-        jCheckBox2.addActionListener(new java.awt.event.ActionListener() {
+        jCheckBoxSaida.setText("Saída de Produtos");
+        jCheckBoxSaida.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox2ActionPerformed(evt);
+                jCheckBoxSaidaActionPerformed(evt);
             }
         });
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel4.setText("Consulta de Produtos");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        TMovEstoque.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -91,23 +111,18 @@ public class IfrMovEstoque extends javax.swing.JInternalFrame {
                 {null, null, null, null}
             },
             new String [] {
-                "Id", "Produto", "Grupo", "Quantidade em Estoque"
+                "Id", "Produto", "Grupo", "Qtd em Estoque"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, true, false
+                false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setResizable(false);
-            jTable1.getColumnModel().getColumn(1).setResizable(false);
-            jTable1.getColumnModel().getColumn(3).setResizable(false);
-        }
+        jScrollPane1.setViewportView(TMovEstoque);
 
         btnPesquisarProd.setText("Salvar Lançamento");
         btnPesquisarProd.addActionListener(new java.awt.event.ActionListener() {
@@ -153,10 +168,10 @@ public class IfrMovEstoque extends javax.swing.JInternalFrame {
 
         jLabel16.setText("Quantidade em Estoque");
 
-        btnPesquisarProd2.setText("Carregar Informações");
-        btnPesquisarProd2.addActionListener(new java.awt.event.ActionListener() {
+        btnCarregarInfo.setText("Carregar Informações");
+        btnCarregarInfo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPesquisarProd2ActionPerformed(evt);
+                btnCarregarInfoActionPerformed(evt);
             }
         });
 
@@ -179,9 +194,9 @@ public class IfrMovEstoque extends javax.swing.JInternalFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jCheckBox1)
+                        .addComponent(jCheckBoxEntrada)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jCheckBox2))
+                        .addComponent(jCheckBoxSaida))
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(160, 160, 160))
             .addGroup(layout.createSequentialGroup()
@@ -192,11 +207,11 @@ public class IfrMovEstoque extends javax.swing.JInternalFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel5)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 356, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(tfdConsultarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 356, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btnPesquisarProd1, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 511, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnPesquisarProd2)))
+                            .addComponent(btnCarregarInfo)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(128, 128, 128)
                         .addComponent(jLabel6))
@@ -212,9 +227,8 @@ public class IfrMovEstoque extends javax.swing.JInternalFrame {
                                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addGroup(layout.createSequentialGroup()
-                                                .addGap(33, 33, 33)
+                                                .addGap(50, 50, 50)
                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                                    .addComponent(jLabel7)
                                                     .addComponent(jLabel8)
                                                     .addComponent(jLabel13)
                                                     .addComponent(jLabel2)))
@@ -225,8 +239,8 @@ public class IfrMovEstoque extends javax.swing.JInternalFrame {
                                             .addGroup(layout.createSequentialGroup()
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addComponent(tfdMarcaProd, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addComponent(tfdSecaoProd, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                     .addGroup(layout.createSequentialGroup()
                                                         .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -239,14 +253,16 @@ public class IfrMovEstoque extends javax.swing.JInternalFrame {
                                         .addGap(121, 121, 121)
                                         .addComponent(jLabel16)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jTextField11, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addComponent(tfdQtdProd, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addGap(89, 89, 89)
+                                .addGap(25, 25, 25)
+                                .addComponent(jLabel7)
+                                .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(tfdIdProd, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(TfdDescricaoProd, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jLabel11)
                                     .addComponent(jLabel10)
@@ -254,10 +270,10 @@ public class IfrMovEstoque extends javax.swing.JInternalFrame {
                                     .addComponent(jLabel14))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextField12, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                    .addComponent(tfdTamanhoProd, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(tfdCorProd, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(tfdGrupoProd, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(tfdPratProd, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -267,49 +283,49 @@ public class IfrMovEstoque extends javax.swing.JInternalFrame {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jCheckBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jCheckBox2))
+                    .addComponent(jCheckBoxEntrada, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jCheckBoxSaida))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel4)
                 .addGap(2, 2, 2)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tfdConsultarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5)
                     .addComponent(btnPesquisarProd1))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnPesquisarProd2)
+                .addComponent(btnCarregarInfo)
                 .addGap(1, 1, 1)
                 .addComponent(jLabel6)
                 .addGap(4, 4, 4)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tfdIdProd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel10)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tfdTamanhoProd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(TfdDescricaoProd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel11)
-                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tfdCorProd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tfdMarcaProd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel12)
-                    .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tfdGrupoProd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel13)
-                    .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tfdSecaoProd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel14)
-                    .addComponent(jTextField12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tfdPratProd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel16)
-                    .addComponent(jTextField11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tfdQtdProd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel15)
                 .addGap(12, 12, 12)
@@ -322,27 +338,57 @@ public class IfrMovEstoque extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnPesquisarProd)
                     .addComponent(btnPesquisarProd3))
-                .addContainerGap(40, Short.MAX_VALUE))
+                .addContainerGap(44, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jCheckBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox2ActionPerformed
+    private void jCheckBoxSaidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxSaidaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox2ActionPerformed
+    }//GEN-LAST:event_jCheckBoxSaidaActionPerformed
 
     private void btnPesquisarProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarProdActionPerformed
        
     }//GEN-LAST:event_btnPesquisarProdActionPerformed
 
     private void btnPesquisarProd1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarProd1ActionPerformed
-        // TODO add your handling code here:
+        new MovestoqueDAO().popularTabela(TMovEstoque,tfdConsultarProduto.getText());
     }//GEN-LAST:event_btnPesquisarProd1ActionPerformed
 
-    private void btnPesquisarProd2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarProd2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnPesquisarProd2ActionPerformed
+    private void btnCarregarInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCarregarInfoActionPerformed
+       String idString = String.valueOf(TMovEstoque.getValueAt(TMovEstoque.getSelectedRow(), 0));
+     
+        int idS = Integer.parseInt(idString);
+        tfdIdProd.setEditable(false);
+        // criar instancia ProdutoDAO
+        ProdutoDAO prodDAO = new ProdutoDAO();
+
+        // criar instancia Produto
+        Produto produto = prodDAO.consultarIdAux(idS);
+
+        if (produto != null) {
+            
+            // define os valores do obj nos campos da tela
+            tfdIdProd.setText(""+produto.getId());
+            TfdDescricaoProd.setText(produto.getDescricao());
+            tfdCorProd.setText(produto.getCor());
+            int aux;
+            aux = produto.getCodsecao();
+            System.out.println(aux);
+            tfdMarcaProd.setText(produto.getMarca());
+            tfdTamanhoProd.setText(produto.getTamanho());
+            tfdQtdProd.setText(""+produto.getQtd());
+            tfdSecaoProd.setText(produto.getSecao());
+            tfdGrupoProd.setText(produto.getGrupo());
+            tfdPratProd.setText(produto.getPrateleira());
+
+            // mudar de aba
+            //jTabbedPane1.setSelectedIndex(0);
+            // definir o foco
+            tfdConsultarProduto.requestFocus();
+        }
+    }//GEN-LAST:event_btnCarregarInfoActionPerformed
 
     private void btnPesquisarProd3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarProd3ActionPerformed
         // TODO add your handling code here:
@@ -350,12 +396,14 @@ public class IfrMovEstoque extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTable TMovEstoque;
+    private javax.swing.JTextField TfdDescricaoProd;
+    private javax.swing.JButton btnCarregarInfo;
     private javax.swing.JButton btnPesquisarProd;
     private javax.swing.JButton btnPesquisarProd1;
-    private javax.swing.JButton btnPesquisarProd2;
     private javax.swing.JButton btnPesquisarProd3;
-    private javax.swing.JCheckBox jCheckBox1;
-    private javax.swing.JCheckBox jCheckBox2;
+    private javax.swing.JCheckBox jCheckBoxEntrada;
+    private javax.swing.JCheckBox jCheckBoxSaida;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -373,18 +421,16 @@ public class IfrMovEstoque extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField10;
-    private javax.swing.JTextField jTextField11;
-    private javax.swing.JTextField jTextField12;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
     private javax.swing.JTextField jTextField9;
+    private javax.swing.JTextField tfdConsultarProduto;
+    private javax.swing.JTextField tfdCorProd;
+    private javax.swing.JTextField tfdGrupoProd;
+    private javax.swing.JTextField tfdIdProd;
+    private javax.swing.JTextField tfdMarcaProd;
+    private javax.swing.JTextField tfdPratProd;
+    private javax.swing.JTextField tfdQtdProd;
+    private javax.swing.JTextField tfdSecaoProd;
+    private javax.swing.JTextField tfdTamanhoProd;
     // End of variables declaration//GEN-END:variables
 }

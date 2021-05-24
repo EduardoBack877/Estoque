@@ -43,7 +43,8 @@ public class MainWindow extends javax.swing.JFrame {
         jMenuCadastroGrupoProdutos = new javax.swing.JMenuItem();
         jMenuCadastroDePrateleiras = new javax.swing.JMenuItem();
         jMenuCadastroProduto = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
+        jMenuMovimentação = new javax.swing.JMenu();
+        jMenuMovimentacao = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("AutoMed System - Quinta");
@@ -103,8 +104,17 @@ public class MainWindow extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenuCadastros);
 
-        jMenu2.setText("Movimentações");
-        jMenuBar1.add(jMenu2);
+        jMenuMovimentação.setText("Movimentações");
+
+        jMenuMovimentacao.setText("Movimentação de Estoque");
+        jMenuMovimentacao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuMovimentacaoActionPerformed(evt);
+            }
+        });
+        jMenuMovimentação.add(jMenuMovimentacao);
+
+        jMenuBar1.add(jMenuMovimentação);
 
         setJMenuBar(jMenuBar1);
 
@@ -152,6 +162,12 @@ public class MainWindow extends javax.swing.JFrame {
         p.setVisible(true);        // TODO add your handling code here:
     }//GEN-LAST:event_jMenuCadastroProdutoActionPerformed
 
+    private void jMenuMovimentacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuMovimentacaoActionPerformed
+        IfrMovEstoque p = new IfrMovEstoque();
+        jDesktopPane1.add(p);
+        p.setVisible(true);  
+    }//GEN-LAST:event_jMenuMovimentacaoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -190,7 +206,6 @@ public class MainWindow extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane jDesktopPane1;
-    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuCadastroDePrateleiras;
     private javax.swing.JMenuItem jMenuCadastroGrupoProdutos;
@@ -198,5 +213,7 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuCadastroProduto;
     private javax.swing.JMenuItem jMenuCadastroSecoes;
     private javax.swing.JMenu jMenuCadastros;
+    private javax.swing.JMenuItem jMenuMovimentacao;
+    private javax.swing.JMenu jMenuMovimentação;
     // End of variables declaration//GEN-END:variables
 }

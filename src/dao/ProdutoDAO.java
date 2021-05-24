@@ -284,6 +284,20 @@ public class ProdutoDAO implements IDAOT<Produto>  {
             return false;
         }
     }
+    
+     public void consulta () { // consulta feita para pegar os nomes de grupo, secao e prateleira que estão como int só com o codigo na tabela de produto
+        try {
+            resultadoQ = ConexaoBD.getInstance().getConnection().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
+                    ResultSet.CONCUR_READ_ONLY).executeQuery(""
+                            + "SELECT G.descricao AS grupo, S.descricao AS secao, PR.id as prateleira  "
+                            + "FROM produto p "
+                            + "LEFT JOIN grupoproduto G ON p.codgrupo = G.id "
+                            + "LEFT JOIN secao S ON p.codsecao = S.id "
+                            + "LEFT JOIN prateleira PR ON p.codprat = PR.id ");
+        } catch (SQLException ex) {
+            Logger.getLogger(MovestoqueDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+     }
 
     @Override
     public ArrayList<Produto> consultarTodos() {
@@ -336,6 +350,46 @@ public class ProdutoDAO implements IDAOT<Produto>  {
         return Produto;
     }
 
+    
+    public Produto consultarIdAux (int id) {
+        Produto Produto = null;
+
+        try {
+            Statement st = ConexaoBD.getInstance().getConnection().createStatement();
+
+            String sql = "SELECT p.id, p.descricao, p.cor, p.marca, p.tamanho, p.qtd, S.descricao AS secao, G.descricao as grupo, PR.id as prateleira "
+                    + "FROM produto p "
+                    + "LEFT JOIN grupoproduto G ON p.codgrupo = G.id "
+                    + "LEFT JOIN secao S ON p.codsecao = S.id "
+                    + "LEFT JOIN prateleira PR ON p.codprat = PR.id "
+                    + "WHERE p.id = " + id;
+            System.out.println("CONSULTA GRUPO");
+            System.out.println("SQL: " + sql);
+
+            resultadoQ = st.executeQuery(sql);
+
+            if (resultadoQ.next()) {
+                Produto = new Produto();
+
+                Produto.setId(resultadoQ.getInt("id"));
+                Produto.setDescricao(resultadoQ.getString("descricao"));
+                Produto.setCor(resultadoQ.getString("cor"));
+                Produto.setMarca(resultadoQ.getString("marca"));
+                Produto.setTamanho(resultadoQ.getString("tamanho"));
+                Produto.setQtd(resultadoQ.getInt("qtd"));
+                Produto.setSecao(resultadoQ.getString("secao"));
+                Produto.setGrupo(resultadoQ.getString("grupo"));
+                Produto.setPrateleira(resultadoQ.getString("prateleira"));
+                
+                
+            }
+
+        } catch (Exception e) {
+            System.out.println("Erro ao consultar produto: " + e);
+        }
+
+        return Produto;
+    }
 
     
     
