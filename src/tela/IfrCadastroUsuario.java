@@ -230,7 +230,7 @@ public class IfrCadastroUsuario extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnExcluirCadUsuarios)
                     .addComponent(btnEditarCadUsuarios))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
                 .addComponent(jLabel2)
                 .addGap(19, 19, 19)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -446,12 +446,12 @@ public class IfrCadastroUsuario extends javax.swing.JInternalFrame {
             UsuarioDAO uDAO = new UsuarioDAO();
             
             if (uDAO.excluir(idExclusao)) {
-                JOptionPane.showMessageDialog(null, "Agendamento excluído com sucesso!");
+                JOptionPane.showMessageDialog(null, "Usuário excluído com sucesso!");
                 uDAO.popularTabela(jTableCadUser, tfdPesquisarCadUsuarios.getText());
             
             
             } else {
-                JOptionPane.showMessageDialog(null, "Problemas ao excluir agendamento.");
+                JOptionPane.showMessageDialog(null, "Problemas ao excluir Usuário.");
             }
         }
     }//GEN-LAST:event_btnExcluirCadUsuariosActionPerformed

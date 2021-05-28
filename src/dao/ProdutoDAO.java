@@ -32,7 +32,7 @@ public class ProdutoDAO implements IDAOT<Produto>  {
         try {
             Statement st = ConexaoBD.getInstance().getConnection().createStatement();
             String sql = "";
-            
+            int aux = 0;
              if (g.getId() == 0) {
                   sql = "INSERT INTO produto VALUES ( "
                     + "default, "
@@ -40,7 +40,7 @@ public class ProdutoDAO implements IDAOT<Produto>  {
                     + "'" + g.getCor() + "',"
                     + "'" + g.getMarca() + "',"
                     + "'" + g.getTamanho() + "',"
-                    + "'" + g.getQtd() + "',"  
+                    + "'" + aux + "',"  
                     + "'" + g.getCodsecao() + "',"
                     + "'" + g.getCodgrupo()+ "',"
                     + "'" + g.getCodprat() + "'"

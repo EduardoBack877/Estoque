@@ -124,7 +124,7 @@
                   <Component id="btnExcluirCadUsuarios" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btnEditarCadUsuarios" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="11" max="32767" attributes="0"/>
+              <EmptySpace pref="15" max="32767" attributes="0"/>
               <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">

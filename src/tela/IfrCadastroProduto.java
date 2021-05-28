@@ -60,7 +60,6 @@ public class IfrCadastroProduto extends javax.swing.JInternalFrame {
         jLabelDescricaoSecao1 = new javax.swing.JLabel();
         jLabelDescricaoSecao2 = new javax.swing.JLabel();
         jLabelDescricaoSecao3 = new javax.swing.JLabel();
-        jLabelDescricaoSecao4 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
@@ -70,10 +69,8 @@ public class IfrCadastroProduto extends javax.swing.JInternalFrame {
         tfdCorProd = new javax.swing.JTextField();
         tfdMarcaProd = new javax.swing.JTextField();
         tfdTamanhoProd = new javax.swing.JTextField();
-        tfdQtdProd = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jComboPrateleira = new javax.swing.JComboBox<>();
         jComboGrupo = new javax.swing.JComboBox<>();
@@ -177,8 +174,6 @@ public class IfrCadastroProduto extends javax.swing.JInternalFrame {
 
         jLabelDescricaoSecao3.setText("Tamanho");
 
-        jLabelDescricaoSecao4.setText("Quantidade");
-
         jLabel4.setForeground(new java.awt.Color(255, 0, 0));
         jLabel4.setText("*");
 
@@ -212,20 +207,11 @@ public class IfrCadastroProduto extends javax.swing.JInternalFrame {
             }
         });
 
-        tfdQtdProd.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfdQtdProdActionPerformed(evt);
-            }
-        });
-
         jLabel7.setForeground(new java.awt.Color(255, 0, 0));
         jLabel7.setText("*");
 
         jLabel8.setForeground(new java.awt.Color(255, 0, 0));
         jLabel8.setText("*");
-
-        jLabel9.setForeground(new java.awt.Color(255, 0, 0));
-        jLabel9.setText("*");
 
         jLabel10.setForeground(new java.awt.Color(255, 0, 0));
         jLabel10.setText("*");
@@ -250,17 +236,6 @@ public class IfrCadastroProduto extends javax.swing.JInternalFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(60, 60, 60)
-                        .addComponent(jLabel6))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(310, 310, 310)
-                        .addComponent(jLabelConsultaSecao)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -268,7 +243,7 @@ public class IfrCadastroProduto extends javax.swing.JInternalFrame {
                         .addGap(74, 74, 74)
                         .addComponent(jLabelPesquisarSecoes)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(tfdPesquisarProduto, javax.swing.GroupLayout.DEFAULT_SIZE, 623, Short.MAX_VALUE)
+                        .addComponent(tfdPesquisarProduto)
                         .addGap(18, 18, 18)
                         .addComponent(btnPesquisarSecoes))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
@@ -276,49 +251,50 @@ public class IfrCadastroProduto extends javax.swing.JInternalFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel7)
                             .addComponent(jLabel8)
-                            .addComponent(jLabel9)
                             .addComponent(jLabel10)
                             .addComponent(jLabel5)
                             .addComponent(jLabel4)
-                            .addComponent(jLabel2))
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel6))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabelDescricaoSecao)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabelDescricaoSecao1)
-                            .addComponent(jLabelDescricaoSecao5)
-                            .addComponent(jLabelDescricaoSecao6)
-                            .addComponent(jLabelDescricaoSecao7)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabelDescricaoSecao4)
-                                    .addComponent(jLabelDescricaoSecao3))
-                                .addComponent(jLabelDescricaoSecao2)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                    .addComponent(jLabelDescricaoSecao3)
+                                    .addGap(22, 22, 22))
+                                .addComponent(jLabelDescricaoSecao2))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(tfdIdProd, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jComboGrupo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jComboSecao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 0, Short.MAX_VALUE))
+                                    .addComponent(jLabelDescricaoSecao)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabelDescricaoSecao1)
+                                    .addComponent(jLabelDescricaoSecao6)
+                                    .addComponent(jLabelDescricaoSecao5)
+                                    .addComponent(jLabelDescricaoSecao7))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(0, 0, Short.MAX_VALUE)
-                                        .addComponent(btnFecharSecao))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jComboPrateleira, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(btnLimparCampos)
-                                        .addGap(36, 36, 36)
-                                        .addComponent(btnSalvarProduto))
                                     .addComponent(tfdMarcaProd, javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(tfdCorProd, javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(tfdDescricaoProd, javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(tfdTamanhoProd, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(tfdQtdProd, javax.swing.GroupLayout.Alignment.LEADING))
-                                .addGap(2, 2, 2))))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(0, 0, Short.MAX_VALUE)
+                                        .addComponent(btnLimparCampos)
+                                        .addGap(36, 36, 36)
+                                        .addComponent(btnSalvarProduto)))
+                                .addGap(2, 2, 2))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jComboSecao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(tfdIdProd, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jComboGrupo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jComboPrateleira, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(645, 645, 645)
+                                        .addComponent(btnFecharSecao)))
+                                .addGap(0, 0, Short.MAX_VALUE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -328,6 +304,12 @@ public class IfrCadastroProduto extends javax.swing.JInternalFrame {
                                 .addComponent(btnExcluirSecoes))
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 827, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(49, 49, 49))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(310, 310, 310)
+                .addComponent(jLabelConsultaSecao)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -373,31 +355,28 @@ public class IfrCadastroProduto extends javax.swing.JInternalFrame {
                     .addComponent(tfdTamanhoProd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabelDescricaoSecao3)
                     .addComponent(jLabel10))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tfdQtdProd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelDescricaoSecao4)
-                    .addComponent(jLabel9))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabelDescricaoSecao5)
                     .addComponent(jLabel8)
+                    .addComponent(jLabelDescricaoSecao5)
                     .addComponent(jComboSecao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(14, 14, 14)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jComboGrupo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabelDescricaoSecao6)
-                    .addComponent(jLabel7)
-                    .addComponent(jComboGrupo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel7))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabelDescricaoSecao7)
-                    .addComponent(jLabel6)
                     .addComponent(jComboPrateleira, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelDescricaoSecao7)
+                    .addComponent(jLabel6))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnLimparCampos)
                     .addComponent(btnSalvarProduto))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnFecharSecao)
-                .addGap(57, 57, 57))
+                .addGap(52, 52, 52))
         );
 
         pack();
@@ -420,8 +399,6 @@ public class IfrCadastroProduto extends javax.swing.JInternalFrame {
         String c = tfdCorProd.getText();
         String d = tfdMarcaProd.getText();
         String e = tfdTamanhoProd.getText();
-        String f = tfdQtdProd.getText();
-        int faux = Integer.parseInt(f);
         int g = jComboSecao.getSelectedIndex();
         int h = jComboGrupo.getSelectedIndex();
         int i = jComboPrateleira.getSelectedIndex();
@@ -430,7 +407,7 @@ public class IfrCadastroProduto extends javax.swing.JInternalFrame {
             
         }
         tfdIdProd.setEditable(false);
-        if (a.isEmpty() || c.isEmpty() || d.isEmpty() || e.isEmpty() || f.isEmpty() || g == 0 || h == 0 || i == 0) {
+        if (a.isEmpty() || c.isEmpty() || d.isEmpty() || e.isEmpty() || g == 0 || h == 0 || i == 0) {
             JOptionPane.showMessageDialog(this, "O preenchimento de todos os campos são obrigatórios");
         } else {
             s.setId(baux);
@@ -438,7 +415,6 @@ public class IfrCadastroProduto extends javax.swing.JInternalFrame {
             s.setCor(c);
             s.setMarca(d);
             s.setTamanho(e);
-            s.setQtd(faux);
             s.setCodsecao(g);
             s.setCodgrupo(h);
             s.setCodprat(i);
@@ -455,7 +431,6 @@ public class IfrCadastroProduto extends javax.swing.JInternalFrame {
             tfdCorProd.setText("");
             tfdMarcaProd.setText("");
             tfdTamanhoProd.setText("");
-            tfdQtdProd.setText("");
             jComboGrupo.setSelectedIndex(0);
             jComboPrateleira.setSelectedIndex(0);
             jComboSecao.setSelectedIndex(0);
@@ -523,7 +498,6 @@ public class IfrCadastroProduto extends javax.swing.JInternalFrame {
             System.out.println(aux);
             tfdMarcaProd.setText(produto.getMarca());
             tfdTamanhoProd.setText(produto.getTamanho());
-            tfdQtdProd.setText(""+produto.getQtd());
             jComboSecao.setSelectedIndex(produto.getCodsecao());
             jComboGrupo.setSelectedIndex(produto.getCodgrupo());
             jComboPrateleira.setSelectedIndex(produto.getCodprat());
@@ -548,7 +522,6 @@ public class IfrCadastroProduto extends javax.swing.JInternalFrame {
             tfdCorProd.setText("");
             tfdMarcaProd.setText("");
             tfdTamanhoProd.setText("");
-            tfdQtdProd.setText("");
             jComboGrupo.setSelectedIndex(0);
             jComboPrateleira.setSelectedIndex(0);
             jComboSecao.setSelectedIndex(0);
@@ -573,10 +546,6 @@ public class IfrCadastroProduto extends javax.swing.JInternalFrame {
     private void tfdTamanhoProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfdTamanhoProdActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_tfdTamanhoProdActionPerformed
-
-    private void tfdQtdProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfdQtdProdActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tfdQtdProdActionPerformed
 
     private void jComboPrateleiraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboPrateleiraActionPerformed
         // TODO add your handling code here:
@@ -607,13 +576,11 @@ public class IfrCadastroProduto extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JLabel jLabelConsultaSecao;
     private javax.swing.JLabel jLabelDescricaoSecao;
     private javax.swing.JLabel jLabelDescricaoSecao1;
     private javax.swing.JLabel jLabelDescricaoSecao2;
     private javax.swing.JLabel jLabelDescricaoSecao3;
-    private javax.swing.JLabel jLabelDescricaoSecao4;
     private javax.swing.JLabel jLabelDescricaoSecao5;
     private javax.swing.JLabel jLabelDescricaoSecao6;
     private javax.swing.JLabel jLabelDescricaoSecao7;
@@ -625,7 +592,6 @@ public class IfrCadastroProduto extends javax.swing.JInternalFrame {
     private javax.swing.JTextField tfdIdProd;
     private javax.swing.JTextField tfdMarcaProd;
     private javax.swing.JTextField tfdPesquisarProduto;
-    private javax.swing.JTextField tfdQtdProd;
     private javax.swing.JTextField tfdTamanhoProd;
     // End of variables declaration//GEN-END:variables
 }
