@@ -4,6 +4,8 @@
  */
 package apoio;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import javax.swing.JFormattedTextField;
 
 /**
@@ -62,6 +64,20 @@ public class Validacao {
         }
         return (correto);
     }
+    
+    
+    	public static boolean validaHora(String hora){
+		SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
+		sdf.setLenient(false);
+		try{
+			sdf.parse(hora);
+		}catch(ParseException e){
+			return false;
+		}
+		return true;
+	}
+	
+
 
     public static boolean validarDataFormatada (String dataComFormato) {
         String[] data = dataComFormato.split("/");

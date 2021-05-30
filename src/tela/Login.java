@@ -114,16 +114,17 @@ public class Login extends javax.swing.JDialog {
     }//GEN-LAST:event_tfdUsernameActionPerformed
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
-/*      String senha = Md5.getMd5(jPassword.getText());
+      String senha = Md5.getMd5(jPassword.getText());
         if (new UsuarioDAO().autenticar(tfdUsername.getText(), String.valueOf(senha))) {
             new MainWindow().setVisible(true);
             this.dispose();
+            
         } else {
             JOptionPane.showMessageDialog(this, "Usuário ou senha incorretos!");
             btnLogin.requestFocus();
        
-        }*/
-           new MainWindow().setVisible(true);
+        }
+          
     }//GEN-LAST:event_btnLoginActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed

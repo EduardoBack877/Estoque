@@ -10,6 +10,7 @@ import entidade.Movestoque;
 import entidade.Produto;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JTable;
@@ -27,6 +28,102 @@ public class MovestoqueDAO {
     
     ResultSet resultadoQ = null;
     ResultSet resultadoQ2 = null;
+    ResultSet resultadoQ3 = null;
+    
+    
+    public boolean atualizaEstoque (int qtd, int tipo, int id) {
+        try {
+            Statement st = ConexaoBD.getInstance().getConnection().createStatement();
+            String sql = "";
+            int aux = 0;
+             if (tipo == 2) {
+                  sql = "UPDATE produto "
+                    + "SET qtd = qtd - " + qtd
+                    + " WHERE id = " + id;
+            } else {
+              sql = "UPDATE produto "
+              + "SET qtd = qtd + " + qtd
+              + " WHERE id = " + id;
+             }
+             
+
+            System.out.println("SQL: " + sql);
+
+            int resultado = st.executeUpdate(sql);
+
+            return resultado > 0;
+
+        } catch (Exception e) {
+            System.out.println("Erro ao atualizar produto: " + e);
+            return false;
+        }
+    }
+    
+    public boolean salvar(String periodo, String hora, int qtd, int codprod, int tipo) {
+        try {
+            Statement st = ConexaoBD.getInstance().getConnection().createStatement();
+            String sql = "";
+            int aux = 0;
+             if (tipo == 2) {
+                  sql = "INSERT INTO movestoque VALUES ( "
+                    + "default, "
+                    + "'" + periodo + " " + hora + "',"
+                    + "'S',"
+                    + qtd + ","
+                    + codprod
+                    + ")";
+            } else {
+                    sql = "INSERT INTO movestoque VALUES ( "
+                    + "default, "
+                    + "'" + periodo + " " + hora + "',"
+                    + "'E',"
+                    + qtd + ","
+                    + codprod
+                    + ")";
+             }
+             
+
+            System.out.println("SQL: " + sql);
+
+            int resultado = st.executeUpdate(sql);
+
+            return resultado > 0;
+
+        } catch (Exception e) {
+            System.out.println("Erro ao salvar movimentação: " + e);
+            return false;
+        }
+    }
+    
+    
+    public boolean consultaEstoque (int idprod, int quant) {
+        int aux = 0;
+        boolean retorna = true;
+        try {
+            resultadoQ3 = ConexaoBD.getInstance().getConnection().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, 
+  ResultSet.CONCUR_READ_ONLY).executeQuery(""
+                    + "SELECT p.qtd  "
+                    + "FROM produto p " 
+                    + "WHERE p.id = "+ idprod
+                    + "ORDER BY p.id");
+            
+            while (resultadoQ3.next()) {
+                aux = resultadoQ3.getInt("qtd");
+            }
+            if (aux >= quant) {
+                retorna = true;
+            } else {
+                retorna = false;
+            }
+          
+            } catch (Exception e) {
+                System.out.println("problemas para consultar estoque...");
+                System.out.println(e);
+        }
+        return retorna;
+    }
+    
+    
     
     public void popularTabela (JTable tabela, String criterio) {
         int numColunas = 4;

@@ -42,7 +42,7 @@ public class IfrCadastroUsuario extends javax.swing.JInternalFrame {
         btnExcluirCadUsuarios = new javax.swing.JButton();
         btnSalvarCadUsuarios = new javax.swing.JButton();
         btnLimparCamposCadUsuarios = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        btnFechar = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         tfdLoginCadUsuarios = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
@@ -114,7 +114,12 @@ public class IfrCadastroUsuario extends javax.swing.JInternalFrame {
             }
         });
 
-        jButton3.setText("Fechar");
+        btnFechar.setText("Fechar");
+        btnFechar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFecharActionPerformed(evt);
+            }
+        });
 
         jLabel3.setText("Username");
 
@@ -198,7 +203,7 @@ public class IfrCadastroUsuario extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnSalvarCadUsuarios)
-                            .addComponent(jButton3))
+                            .addComponent(btnFechar))
                         .addGap(50, 50, 50))))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -257,7 +262,7 @@ public class IfrCadastroUsuario extends javax.swing.JInternalFrame {
                     .addComponent(btnSalvarCadUsuarios)
                     .addComponent(btnLimparCamposCadUsuarios))
                 .addGap(26, 26, 26)
-                .addComponent(jButton3))
+                .addComponent(btnFechar))
         );
 
         pack();
@@ -456,14 +461,18 @@ public class IfrCadastroUsuario extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_btnExcluirCadUsuariosActionPerformed
 
+    private void btnFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFecharActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_btnFecharActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnEditarCadUsuarios;
     private javax.swing.JButton btnExcluirCadUsuarios;
+    private javax.swing.JButton btnFechar;
     private javax.swing.JButton btnLimparCamposCadUsuarios;
     private javax.swing.JButton btnPesquisar;
     private javax.swing.JButton btnSalvarCadUsuarios;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

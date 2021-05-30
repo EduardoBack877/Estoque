@@ -11,6 +11,15 @@ public class Movestoque {
     int qtd;
     int codprod;
     String operacao;
+    String hora;
+
+    public String getHora() {
+        return hora;
+    }
+
+    public void setHora(String hora) {
+        this.hora = hora;
+    }
 
     public String getOperacao() {
         return operacao;

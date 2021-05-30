@@ -71,6 +71,21 @@ public class Formatacao {
             System.err.println(e);
         }
     }
+    public static void formatarHora(JFormattedTextField campo) {
+        try {
+            MaskFormatter m = new MaskFormatter();
+            m.setPlaceholderCharacter(' ');
+            m.setMask("##:##");
+            campo.setFormatterFactory(null);
+            campo.setFormatterFactory(new DefaultFormatterFactory(m));
+            campo.setValue(null);
+        } catch (Exception e) {
+            System.err.println(e);
+        }
+    }
+    
+    
+    
     
      public static void formatarDataHora(JFormattedTextField campo) {
         try {
