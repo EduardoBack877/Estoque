@@ -7,13 +7,17 @@ package dao;
 
 import apoio.ConexaoBD;
 import entidade.Produto;
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
+import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
@@ -21,6 +25,7 @@ import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.view.JasperViewer;
 import tela.IfrCadastroSecoes;
 import tela.IfrConsultaEstoque;
+import tela.MainWindow;
 
 /**
  *
@@ -30,25 +35,54 @@ public class RelatoriosDAO {
      ResultSet resultadoQ = null;
      ResultSet resultadoQ2 = null;
     public void geraRelatorioItensNoEstoque() {
-        // chamada de relatório, SEM parâmetros
+        Connection connection = null;
         try {
-            // Compila o relatorio
-//            JasperReport relatorio = JasperCompileManager.compileReport(getClass().getResourceAsStream("C:\\Users\\dudub\\Documents\\NetBeansProjects\\Estoque\\src\\relatorios\\Itens_noestoque.jrxml"));
-            JasperReport relatorio = JasperCompileManager.compileReport(getClass().getResourceAsStream("Área de Trabalho\\Itens_noestoque.jrxml"));
+            // Obtém a conexão com o banco de dados
+            connection = ConexaoBD.getInstance().getConnection();
 
-            // Mapeia campos de parametros para o relatorio, mesmo que nao existam
-            Map parametros = new HashMap();
+            // Compilar o relatório do formato XML gerando um objeto JasperReport
+            JasperReport relatorio = JasperCompileManager.compileReport(getClass().getResourceAsStream("/relatorios/Itens_noestoque.jrxml"));
+            // Cria uma lista de parâmetros para o relatório
+            Map param = new HashMap();
 
-            // Executa relatoio
-            JasperPrint impressao = JasperFillManager.fillReport(relatorio, parametros, ConexaoBD.getInstance().getConnection());
+            // Gera o relatório efetivamente
+            JasperPrint print;
+            print = JasperFillManager.fillReport(relatorio, param, connection);
 
-            // Exibe resultado em video
-            JasperViewer.viewReport(impressao, false);
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Erro ao gerar relatório: " + e);
+            // Exibir o relatório
+            JasperViewer.viewReport(print, false);
+
+        } catch (JRException ex) {
+            Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }
+    
+       public void geraRelatorioItensPorCategoria() {
+        Connection connection = null;
+        try {
+            // Obtém a conexão com o banco de dados
+            connection = ConexaoBD.getInstance().getConnection();
+
+            // Compilar o relatório do formato XML gerando um objeto JasperReport
+            JasperReport relatorio = JasperCompileManager.compileReport(getClass().getResourceAsStream("/relatorios/ItensporGrupoNoEstoque.jrxml"));
+            // Cria uma lista de parâmetros para o relatório
+            Map param = new HashMap();
+
+            // Gera o relatório efetivamente
+            JasperPrint print;
+            print = JasperFillManager.fillReport(relatorio, param, connection);
+
+            // Exibir o relatório
+            JasperViewer.viewReport(print, false);
+
+        } catch (JRException ex) {
+            Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    
+    
+    
     public void popularTabela (JTable tabela, String datainicial, String datafinal, String horainicial, String horafinal,  int codgrupo, int codoper) {
         int numColunas = 5;
         String aux = "";
