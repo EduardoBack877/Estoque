@@ -6,9 +6,19 @@
 package tela;
 
 import apoio.ConexaoBD;
+import dao.RelatoriosDAO;
+import java.sql.Connection;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
@@ -35,6 +45,9 @@ public class MainWindow extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
         jDesktopPane1 = new javax.swing.JDesktopPane();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenuCadastros = new javax.swing.JMenu();
@@ -45,6 +58,15 @@ public class MainWindow extends javax.swing.JFrame {
         jMenuCadastroProduto = new javax.swing.JMenuItem();
         jMenuMovimentação = new javax.swing.JMenu();
         jMenuMovimentacao = new javax.swing.JMenuItem();
+        jMenu1 = new javax.swing.JMenu();
+        jMenuItem4 = new javax.swing.JMenuItem();
+        jMenuItem5 = new javax.swing.JMenuItem();
+
+        jMenuItem1.setText("jMenuItem1");
+
+        jMenuItem2.setText("jMenuItem2");
+
+        jMenuItem3.setText("jMenuItem3");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("AutoMed System - Quinta");
@@ -116,6 +138,26 @@ public class MainWindow extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenuMovimentação);
 
+        jMenu1.setText("Relatórios");
+
+        jMenuItem4.setText("Listagem de Itens em Estoque");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem4);
+
+        jMenuItem5.setText("Consulta de Estoque em Tela");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem5);
+
+        jMenuBar1.add(jMenu1);
+
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -135,7 +177,7 @@ public class MainWindow extends javax.swing.JFrame {
     private void jMenuCadastroSecoesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuCadastroSecoesActionPerformed
         IfrCadastroSecoes s = new IfrCadastroSecoes();
         jDesktopPane1.add(s);
-        s.setVisible(true);       
+        s.setVisible(true);
     }//GEN-LAST:event_jMenuCadastroSecoesActionPerformed
 
     private void jMenuCadastroPessoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuCadastroPessoaActionPerformed
@@ -165,8 +207,40 @@ public class MainWindow extends javax.swing.JFrame {
     private void jMenuMovimentacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuMovimentacaoActionPerformed
         IfrMovEstoque p = new IfrMovEstoque();
         jDesktopPane1.add(p);
-        p.setVisible(true);  
+        p.setVisible(true);
     }//GEN-LAST:event_jMenuMovimentacaoActionPerformed
+
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+//        RelatoriosDAO rDAO = new RelatoriosDAO();
+//        rDAO.geraRelatorioItensNoEstoque();
+        Connection connection = null;
+        try {
+            // Obtém a conexão com o banco de dados
+            connection = ConexaoBD.getInstance().getConnection();
+
+            // Compilar o relatório do formato XML gerando um objeto JasperReport
+            JasperReport relatorio = JasperCompileManager.compileReport(getClass().getResourceAsStream("/relatorios/Itens_noestoque.jrxml"));
+            // Cria uma lista de parâmetros para o relatório
+            Map param = new HashMap();
+
+            // Gera o relatório efetivamente
+            JasperPrint print;
+            print = JasperFillManager.fillReport(relatorio, param, connection);
+
+            // Exibir o relatório
+            JasperViewer.viewReport(print, false);
+
+        } catch (JRException ex) {
+            Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
+
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+        IfrConsultaEstoque s = new IfrConsultaEstoque();
+        jDesktopPane1.add(s);
+        s.setVisible(true);        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -206,6 +280,7 @@ public class MainWindow extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane jDesktopPane1;
+    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuCadastroDePrateleiras;
     private javax.swing.JMenuItem jMenuCadastroGrupoProdutos;
@@ -213,6 +288,11 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuCadastroProduto;
     private javax.swing.JMenuItem jMenuCadastroSecoes;
     private javax.swing.JMenu jMenuCadastros;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuMovimentacao;
     private javax.swing.JMenu jMenuMovimentação;
     // End of variables declaration//GEN-END:variables

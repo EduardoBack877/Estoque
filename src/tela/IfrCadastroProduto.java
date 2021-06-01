@@ -224,6 +224,11 @@ public class IfrCadastroProduto extends javax.swing.JInternalFrame {
         });
 
         jComboGrupo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecionar" }));
+        jComboGrupo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboGrupoActionPerformed(evt);
+            }
+        });
 
         jComboSecao.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecionar" }));
         jComboSecao.addActionListener(new java.awt.event.ActionListener() {
@@ -376,7 +381,7 @@ public class IfrCadastroProduto extends javax.swing.JInternalFrame {
                     .addComponent(btnSalvarProduto))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnFecharSecao)
-                .addGap(52, 52, 52))
+                .addContainerGap())
         );
 
         pack();
@@ -554,6 +559,10 @@ public class IfrCadastroProduto extends javax.swing.JInternalFrame {
     private void jComboSecaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboSecaoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboSecaoActionPerformed
+
+    private void jComboGrupoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboGrupoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboGrupoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
