@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.17.0.final using JasperReports Library version 6.17.0-6d93193241dd8cc42629e188b94f9e0bc5722efd  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="RelatórioDeMovimentacao" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="be05bdf9-8cab-4d82-8e11-2d265b9f211a">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="DB Estoque Report"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<parameter name="periodoini" class="java.lang.String">
+		<parameterDescription><![CDATA[]]></parameterDescription>
+	</parameter>
+	<parameter name="periodofi" class="java.lang.String"/>
+	<parameter name="operacao" class="java.lang.String">
+		<parameterDescription><![CDATA[]]></parameterDescription>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT m.periodo, p.descricao, m.qtd, m.operacao
+FROM produto p
+	LEFT JOIN movestoque m ON 
+	 p.id = m.codprod 
+WHERE 
+	 m.periodo BETWEEN  CAST($P{periodoini} AS TIMESTAMP) AND CAST($P{periodofi} AS TIMESTAMP) AND m.operacao = $P{operacao} ]]>
+	</queryString>
+	<field name="periodo" class="java.sql.Timestamp">
+		<property name="com.jaspersoft.studio.field.name" value="periodo"/>
+		<property name="com.jaspersoft.studio.field.label" value="periodo"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="movestoque"/>
+	</field>
+	<field name="descricao" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="descricao"/>
+		<property name="com.jaspersoft.studio.field.label" value="descricao"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="produto"/>
+	</field>
+	<field name="qtd" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="qtd"/>
+		<property name="com.jaspersoft.studio.field.label" value="qtd"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="movestoque"/>
+	</field>
+	<field name="operacao" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="operacao"/>
+		<property name="com.jaspersoft.studio.field.label" value="operacao"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="movestoque"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="40" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="48" splitType="Stretch">
+			<staticText>
+				<reportElement x="10" y="5" width="80" height="25" uuid="5a50d2fe-1a99-410d-ba33-f5318968e444"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Período]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="120" y="2" width="70" height="30" uuid="ef3d1f8a-02ab-4524-8569-785786068b9a"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Produto]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="210" y="0" width="100" height="30" uuid="b6022951-b4b9-4e0d-9c3f-6353339a916f"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Quantidade]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="320" y="5" width="100" height="30" uuid="fb41ec61-b9ca-4306-bce5-a72613c71c50"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Operação]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="4" splitType="Stretch">
+			<staticText>
+				<reportElement x="37" y="0" width="100" height="4" uuid="32d585b5-49a7-4cb5-bda1-5ca3db3b13e5">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="eb10dde5-f856-4585-bd2f-97074d13706a"/>
+				</reportElement>
+				<text><![CDATA[periodo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="167" y="0" width="100" height="4" uuid="a9c0e5e8-384c-4cc7-a84d-49ef7de8253d">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="6b6ff5f3-69fd-4434-a292-6963c477bae0"/>
+				</reportElement>
+				<text><![CDATA[descricao]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="252" y="0" width="100" height="4" uuid="1da85db9-6b5e-4449-9747-431c9608834f">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="90f8ebd0-d07a-484b-b29e-a03a30d84e9d"/>
+				</reportElement>
+				<text><![CDATA[qtd]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="382" y="0" width="100" height="4" uuid="9796ad50-b7b7-48a7-808f-e906aa03b7ec">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="ce64b02d-e0bd-4f11-9700-d50782de5890"/>
+				</reportElement>
+				<text><![CDATA[operacao]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch">
+			<textField>
+				<reportElement x="10" y="0" width="100" height="30" uuid="324f3b64-7de5-4e52-87b5-f044c4da0adf">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="eb10dde5-f856-4585-bd2f-97074d13706a"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{periodo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="110" y="0" width="100" height="30" uuid="665bcf98-1d41-4489-94d6-6a4338a502b4">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="6b6ff5f3-69fd-4434-a292-6963c477bae0"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{descricao}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="220" y="0" width="100" height="30" uuid="c4b06f71-76a0-48b3-9f57-97441332d5af">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="90f8ebd0-d07a-484b-b29e-a03a30d84e9d"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{qtd}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="310" y="0" width="100" height="30" uuid="a6a40fe4-c576-4ee5-9fa9-dda6a12c9118">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="ce64b02d-e0bd-4f11-9700-d50782de5890"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{operacao}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

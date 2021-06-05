@@ -17,17 +17,16 @@ import javax.swing.JOptionPane;
  *
  * @author Back
  */
-public class IfrConsultaEstoque extends javax.swing.JInternalFrame {
+public class IfrRelatorioMovimentacao extends javax.swing.JInternalFrame {
 
     /** Creates new form IfrConsultaEstoque */
-    public IfrConsultaEstoque() {
+    public IfrRelatorioMovimentacao() {
         initComponents();
         ProdutoDAO prodDAO = new ProdutoDAO();
         Formatacao.formatarData(tfdFdataIniciall);
         Formatacao.formatarHora(tfdFHoraInicial);
         Formatacao.formatarHora(tfdFHoraFinal);
         Formatacao.formatarData(tfdFdataFinal);
-        prodDAO.popularComboGrupo(jComboBoxGrupo);
         
     }
 
@@ -41,8 +40,6 @@ public class IfrConsultaEstoque extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         tfdFdataIniciall = new javax.swing.JFormattedTextField();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTableMov = new javax.swing.JTable();
         tfdFdataFinal = new javax.swing.JFormattedTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -50,30 +47,16 @@ public class IfrConsultaEstoque extends javax.swing.JInternalFrame {
         jLabel4 = new javax.swing.JLabel();
         tfdFHoraInicial = new javax.swing.JFormattedTextField();
         tfdFHoraFinal = new javax.swing.JFormattedTextField();
-        jComboBoxGrupo = new javax.swing.JComboBox<>();
-        jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jComboBoxOper = new javax.swing.JComboBox<>();
         BtnCarregarInfo = new javax.swing.JButton();
+        btnPesquisarProd3 = new javax.swing.JButton();
 
         tfdFdataIniciall.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tfdFdataIniciallActionPerformed(evt);
             }
         });
-
-        jTableMov.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
-            },
-            new String [] {
-                "Período", "Produto", "Grupo", "Operação", "Quantidade"
-            }
-        ));
-        jScrollPane1.setViewportView(jTableMov);
 
         tfdFdataFinal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -103,10 +86,6 @@ public class IfrConsultaEstoque extends javax.swing.JInternalFrame {
             }
         });
 
-        jComboBoxGrupo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecionar" }));
-
-        jLabel5.setText("Grupo");
-
         jLabel6.setText("Operação");
 
         jComboBoxOper.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecionar", "Entrada", "Saída" }));
@@ -118,6 +97,13 @@ public class IfrConsultaEstoque extends javax.swing.JInternalFrame {
             }
         });
 
+        btnPesquisarProd3.setText("Fechar");
+        btnPesquisarProd3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPesquisarProd3ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -126,72 +112,69 @@ public class IfrConsultaEstoque extends javax.swing.JInternalFrame {
                 .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(tfdFdataIniciall, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(tfdFdataFinal, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(BtnCarregarInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(49, 49, 49)
-                                .addComponent(jLabel3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(tfdFHoraInicial, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(btnPesquisarProd3))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel1)
+                                    .addComponent(jLabel2))
                                 .addGap(18, 18, 18)
-                                .addComponent(jLabel4)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(tfdFHoraFinal, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(18, 18, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jLabel5)
-                                .addGap(18, 18, 18)
-                                .addComponent(jComboBoxGrupo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(tfdFdataIniciall, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(tfdFdataFinal, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(39, 39, 39)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel3)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(tfdFHoraInicial, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel4)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(tfdFHoraFinal, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
                                 .addComponent(jLabel6)
                                 .addGap(18, 18, 18)
                                 .addComponent(jComboBoxOper, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(61, 61, 61))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 561, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(33, 33, 33)
-                    .addComponent(BtnCarregarInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(459, Short.MAX_VALUE)))
+                        .addGap(42, 42, 42))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jComboBoxGrupo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(tfdFdataIniciall, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel1)
-                        .addComponent(jLabel3)
-                        .addComponent(tfdFHoraInicial, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel5)))
-                .addGap(15, 15, 15)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(tfdFdataFinal, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tfdFHoraFinal, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel6)
-                    .addComponent(jComboBoxOper, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(59, 59, 59)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 398, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(98, 98, 98)
-                    .addComponent(BtnCarregarInfo)
-                    .addContainerGap(438, Short.MAX_VALUE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(tfdFdataIniciall, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel3)
+                            .addComponent(tfdFHoraInicial, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel2)
+                                    .addComponent(tfdFdataFinal, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(20, 20, 20)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(tfdFHoraFinal, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel4)))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(23, 23, 23)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jComboBoxOper, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel6))))
+                .addGap(18, 18, 18)
+                .addComponent(BtnCarregarInfo)
+                .addGap(18, 18, 18)
+                .addComponent(btnPesquisarProd3)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -215,46 +198,55 @@ public class IfrConsultaEstoque extends javax.swing.JInternalFrame {
 
     private void BtnCarregarInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCarregarInfoActionPerformed
            Validacao valida = new Validacao();
+            RelatoriosDAO rdao = new RelatoriosDAO();
             String dataini = tfdFdataIniciall.getText();
             String datafi = tfdFdataFinal.getText();
             String horaini = tfdFHoraInicial.getText();
             String horafi = tfdFHoraFinal.getText();
-            int codgrupo = jComboBoxGrupo.getSelectedIndex();
             int codoper = jComboBoxOper.getSelectedIndex();
+            String periodoinicial = "'" + dataini + " " + horaini + "'";
+            String periodofinal = "'" + datafi + " " + horafi + "'";
+            String operacao = "";
+            if (codoper == 1) {
+                operacao = "'E'";
+            }
+            if (codoper == 2) {
+                operacao = "'S'";
+            }
+           
+                    
         if ((valida.validarDataFormatada(tfdFdataIniciall.getText()) == false) || (valida.validarDataFormatada(tfdFdataFinal.getText()) == false)) {
              JOptionPane.showMessageDialog(null, "A data preenchida é inválida");
          } else { 
          if ((valida.validaHora(tfdFHoraInicial.getText()) == false) || (valida.validaHora(tfdFHoraFinal.getText()) == false))  {
              JOptionPane.showMessageDialog(null, "A hora preenchida é inválida");  
          } else {
-             if (jComboBoxGrupo.getSelectedIndex() == 0) {
-               JOptionPane.showMessageDialog(null, "Por favor selecione um grupo"); 
-         } else {
                 if (jComboBoxOper.getSelectedIndex() == 0) {
                JOptionPane.showMessageDialog(null, "Por favor selecione uma operação");  
              } else {
-                    new RelatoriosDAO().popularTabela(jTableMov,dataini,datafi,horaini,horafi,codgrupo,codoper);
+                    
                 }
-             }
          }
-        }        // TODO add your handling code here:
+        }
+         rdao.geraRelatorioMovEstoque(periodoinicial, periodofinal, operacao);
     }//GEN-LAST:event_BtnCarregarInfoActionPerformed
+
+    private void btnPesquisarProd3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarProd3ActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_btnPesquisarProd3ActionPerformed
 
  
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnCarregarInfo;
-    private javax.swing.JComboBox<String> jComboBoxGrupo;
+    private javax.swing.JButton btnPesquisarProd3;
     private javax.swing.JComboBox<String> jComboBoxOper;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTableMov;
     private javax.swing.JFormattedTextField tfdFHoraFinal;
     private javax.swing.JFormattedTextField tfdFHoraInicial;
     private javax.swing.JFormattedTextField tfdFdataFinal;

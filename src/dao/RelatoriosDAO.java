@@ -79,6 +79,37 @@ public class RelatoriosDAO {
             Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+       
+       
+      public void geraRelatorioMovEstoque (String periodoini, String periodofi, String operacao) {
+        Connection connection = null;
+        try {
+            // Obtém a conexão com o banco de dados
+            connection = ConexaoBD.getInstance().getConnection();
+
+            // Compilar o relatório do formato XML gerando um objeto JasperReport
+            JasperReport relatorio = JasperCompileManager.compileReport(getClass().getResourceAsStream("/relatorios/RelatórioDeMovimentacao.jrxml"));
+            // Cria uma lista de parâmetros para o relatório
+            Map param = new HashMap();
+
+            
+            //adiciona parametros
+            param.put("periodoini",periodoini);
+                param.put("periodofi", periodofi);
+                 param.put("operacao", operacao);
+              
+            
+            // Gera o relatório efetivamente
+            JasperPrint print;
+            print = JasperFillManager.fillReport(relatorio, param, connection);
+
+            // Exibir o relatório
+            JasperViewer.viewReport(print, false);
+
+        } catch (JRException ex) {
+            Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
+        }
+      }
     
     
     

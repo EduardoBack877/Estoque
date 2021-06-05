@@ -3,12 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/dudub/Documents/NetBeansProjects/Estoque/src/entidade/Movestoque.java</file>
-            <file>file:/C:/Users/dudub/Documents/NetBeansProjects/Estoque/src/dao/MovestoqueDAO.java</file>
             <file>file:/C:/Users/dudub/Documents/NetBeansProjects/Estoque/src/dao/ProdutoDAO.java</file>
-            <file>file:/C:/Users/dudub/Documents/NetBeansProjects/Estoque/src/tela/IfrCadastroUsuario.java</file>
-            <file>file:/C:/Users/dudub/Documents/NetBeansProjects/Estoque/src/tela/IfrCadastroProduto.java</file>
+            <file>file:/C:/Users/dudub/Documents/NetBeansProjects/Estoque/src/dao/SecaoDAO.java</file>
+            <file>file:/C:/Users/dudub/Documents/NetBeansProjects/Estoque/src/tela/IfrConsultaEstoque.java</file>
+            <file>file:/C:/Users/dudub/Documents/NetBeansProjects/Estoque/src/tela/MainWindow.java</file>
             <file>file:/C:/Users/dudub/Documents/NetBeansProjects/Estoque/src/tela/IfrMovEstoque.java</file>
+            <file>file:/C:/Users/dudub/Documents/NetBeansProjects/Estoque/src/dao/RelatoriosDAO.java</file>
+            <file>file:/C:/Users/dudub/Documents/NetBeansProjects/Estoque/src/relatorios/Itens_noestoque.jrxml</file>
+            <file>file:/C:/Users/dudub/Documents/NetBeansProjects/Estoque/src/dao/UsuarioDAO.java</file>
         </group>
     </open-files>
 </project-private>

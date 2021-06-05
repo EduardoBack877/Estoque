@@ -205,8 +205,6 @@ public class SecaoDAO implements IDAOT<Secao>  {
             String sql = "SELECT * "
                     + "FROM secao "
                     + "WHERE id = " + id;
-            System.out.println("CONSULTA SECAO");
-            System.out.println("SQL: " + sql);
 
             resultadoQ = st.executeQuery(sql);
 

@@ -62,6 +62,7 @@ public class MainWindow extends javax.swing.JFrame {
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenuItemConsultaEmTela = new javax.swing.JMenuItem();
         jMenuItemItensPorCategoria = new javax.swing.JMenuItem();
+        jMenuItem5 = new javax.swing.JMenuItem();
 
         jMenuItem1.setText("jMenuItem1");
 
@@ -149,7 +150,7 @@ public class MainWindow extends javax.swing.JFrame {
         });
         jMenu1.add(jMenuItem4);
 
-        jMenuItemConsultaEmTela.setText("Consulta de Estoque em Tela");
+        jMenuItemConsultaEmTela.setText("Consulta de Movimentação em Tela");
         jMenuItemConsultaEmTela.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItemConsultaEmTelaActionPerformed(evt);
@@ -164,6 +165,14 @@ public class MainWindow extends javax.swing.JFrame {
             }
         });
         jMenu1.add(jMenuItemItensPorCategoria);
+
+        jMenuItem5.setText("Relatório Consulta de Movimentações");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem5);
 
         jMenuBar1.add(jMenu1);
 
@@ -235,6 +244,13 @@ public class MainWindow extends javax.swing.JFrame {
         rDAO.geraRelatorioItensPorCategoria();// TODO add your handling code here:
     }//GEN-LAST:event_jMenuItemItensPorCategoriaActionPerformed
 
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+       IfrRelatorioMovimentacao s = new IfrRelatorioMovimentacao();
+        jDesktopPane1.add(s);
+        s.setVisible(true); 
+
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -285,6 +301,7 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItemConsultaEmTela;
     private javax.swing.JMenuItem jMenuItemItensPorCategoria;
     private javax.swing.JMenuItem jMenuMovimentacao;
