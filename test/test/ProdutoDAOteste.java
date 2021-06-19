@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package dao;
+package test;
 import apoio.ConexaoBD;
+import dao.ProdutoDAO;
 import dao.ProdutoDAO;
 import entidade.Produto;
 import java.sql.Connection;
@@ -30,7 +31,7 @@ public class ProdutoDAOteste {
      
    }
    
-  @Test 
+ /* @Test 
   public void criarProduto() {
      int aux = 0;
      Produto prod = new Produto(); 
@@ -45,7 +46,7 @@ public class ProdutoDAOteste {
      if (produtoDAO.salvar(prod)) {
          aux = 1;
      };
-  }
+  }*/
    
    @Test
    public void testeSalvar() throws Exception {
@@ -66,11 +67,11 @@ public class ProdutoDAOteste {
  
     }
    
-   @Test
+ /*  @Test
    public void testeEditar () {
        criarProduto();
        
-   }
+   }*/
    
    
    

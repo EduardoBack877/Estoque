@@ -61,7 +61,8 @@ public class ProdutoDAO implements IDAOT<Produto>  {
             System.out.println("SQL: " + sql);
 
             int resultado = st.executeUpdate(sql);
-
+            System.out.println("teste ok");
+            
             return resultado > 0;
 
         } catch (Exception e) {
