@@ -6,12 +6,9 @@
 package test;
 import apoio.ConexaoBD;
 import dao.ProdutoDAO;
-import dao.ProdutoDAO;
 import entidade.Produto;
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.sql.Statement;
-import org.junit.Assert;
 import static org.junit.Assert.assertTrue;
 import org.junit.BeforeClass;
 import org.junit.Test;
