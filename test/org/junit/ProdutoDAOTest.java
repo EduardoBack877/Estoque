@@ -7,8 +7,6 @@ import entidade.Produto;
 import java.sql.Connection;
 import java.sql.SQLException;
 import static org.junit.Assert.assertTrue;
-import org.junit.BeforeClass;
-import org.junit.Test;
 
 
 
@@ -17,6 +15,7 @@ public class ProdutoDAOTest {
    private static ProdutoDAO produtoDAO;
    
    @BeforeClass
+  
    public static void init () throws SQLException
    {
     Connection conexao = ConexaoBD.getInstance().getConnection();
@@ -26,6 +25,7 @@ public class ProdutoDAOTest {
    }
    
 @Test
+
    public void testeSalvar() throws Exception {
      int aux = 0;
      Produto prod = new Produto(); 
