@@ -9,9 +9,11 @@ import apoio.ConexaoBD;
 import entidade.Produto;
 import java.sql.Connection;
 import java.sql.SQLException;
-import static junit.framework.Assert.assertTrue;
+import static org.junit.Assert.assertTrue;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.junit;
+
 
 /**
  *
