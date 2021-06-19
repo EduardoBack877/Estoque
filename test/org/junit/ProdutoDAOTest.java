@@ -6,7 +6,8 @@ import dao.ProdutoDAO;
 import entidade.Produto;
 import java.sql.Connection;
 import java.sql.SQLException;
-import static org.junit.Assert.assertTrue;
+import static junit.framework.Assert.assertTrue;
+
 
 
 
@@ -27,7 +28,7 @@ public class ProdutoDAOTest {
 @Test
 
    public void testeSalvar() throws Exception {
-     int aux = 0;
+     boolean aux = false;
      Produto prod = new Produto(); 
      prod.setCodgrupo(1);
      prod.setCodprat(1);
@@ -38,9 +39,9 @@ public class ProdutoDAOTest {
      prod.setQtd(10);
      prod.setTamanho("M");
      if (produtoDAO.salvar(prod)) {
-         aux = 1;
+         aux = true;
      };
-     assertTrue(aux == 1);
+     assertTrue(aux == true);
  
     }
 }
