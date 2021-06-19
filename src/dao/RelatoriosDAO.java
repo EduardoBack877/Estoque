@@ -81,7 +81,7 @@ public class RelatoriosDAO {
     }
        
        
-      public void geraRelatorioMovEstoque (String periodoini, String periodofi, String operacao) {
+      public void geraRelatorioMovEstoque (String parametros) {
         Connection connection = null;
         try {
             // Obtém a conexão com o banco de dados
@@ -94,9 +94,8 @@ public class RelatoriosDAO {
 
             
             //adiciona parametros
-            param.put("periodoini",periodoini);
-                param.put("periodofi", periodofi);
-                 param.put("operacao", operacao);
+            param.put("periodoini",parametros);
+
               
             
             // Gera o relatório efetivamente

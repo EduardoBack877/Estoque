@@ -59,7 +59,6 @@ public class ProdutoDAO implements IDAOT<Produto>  {
                     + "WHERE id = " + g.getId();
             }
              
-
             System.out.println("SQL: " + sql);
 
             int resultado = st.executeUpdate(sql);
@@ -71,6 +70,9 @@ public class ProdutoDAO implements IDAOT<Produto>  {
             return false;
         }
     }
+    
+        
+  
     
    
     public void popularComboSecao (JComboBox combo) {
@@ -150,6 +152,14 @@ public class ProdutoDAO implements IDAOT<Produto>  {
         
         
         int lin = 0;
+        String teste = "SELECT p.id, p.descricao, p.cor, p.marca, p.tamanho, p.qtd, S.descricao AS secao, G.descricao AS grupo, PR.id as prateleira "
+                    + "FROM produto p " 
+                    + "LEFT JOIN grupoproduto G ON p.codgrupo = G.id "
+                    + "LEFT JOIN secao S ON p.codsecao = S.id "
+                    + "LEFT JOIN prateleira PR ON p.codprat = PR.id "
+                    + "WHERE p.descricao ILIKE '%" + criterio + "%'"
+                    + "ORDER BY p.id;";
+        
         
        
         //efetua consulta na tabela
@@ -163,7 +173,7 @@ public class ProdutoDAO implements IDAOT<Produto>  {
                     + "LEFT JOIN prateleira PR ON p.codprat = PR.id "
                     + "WHERE p.descricao ILIKE '%" + criterio + "%'"
                     + "ORDER BY p.id");
-            
+           
 
             // vai para o ultima linha do RS
             // captura a linha = num de registros
@@ -189,6 +199,8 @@ public class ProdutoDAO implements IDAOT<Produto>  {
                 
              
                       lin++;}
+            
+
          
             
         } catch (Exception e) {
