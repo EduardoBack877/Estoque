@@ -1,3 +1,5 @@
+package org.junit;
+
 
 import apoio.ConexaoBD;
 import dao.ProdutoDAO;
