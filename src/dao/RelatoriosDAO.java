@@ -88,13 +88,13 @@ public class RelatoriosDAO {
             connection = ConexaoBD.getInstance().getConnection();
 
             // Compilar o relatório do formato XML gerando um objeto JasperReport
-            JasperReport relatorio = JasperCompileManager.compileReport(getClass().getResourceAsStream("/relatorios/RelatórioDeMovimentacao.jrxml"));
+            JasperReport relatorio = JasperCompileManager.compileReport(getClass().getResourceAsStream("/relatorios/RelMov.jrxml"));
             // Cria uma lista de parâmetros para o relatório
             Map param = new HashMap();
 
             
             //adiciona parametros
-            param.put("periodoini",parametros);
+          //  param.put("parametros",parametros);
 
               
             

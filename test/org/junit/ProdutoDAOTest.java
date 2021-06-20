@@ -17,7 +17,6 @@ public class ProdutoDAOTest {
    private static ProdutoDAO produtoDAO;
    
    @BeforeClass
-  
    public static void init () throws SQLException
    {
     Connection conexao = ConexaoBD.getInstance().getConnection();
